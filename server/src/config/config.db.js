@@ -8,8 +8,8 @@ const connectDB = async () => {
             useFindAndModify: false
         });
 
-        console.log(`DB: DONE`);
-        console.log(`URI: ${connection.connection.host}`);
+        console.log("\x1b[44m%s\x1b[0m", `[DB]: DONE`);
+        console.log("\x1b[33m%s\x1b[0m", `URI: ${connection.connection.host}`);
         console.log(`___________________________________________`);
     } catch (error) {
         console.error(error);

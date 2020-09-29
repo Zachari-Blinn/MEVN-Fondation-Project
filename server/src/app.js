@@ -21,10 +21,13 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cors());
 
+// Routes
+// app.use('/people', require('./routes/model.people'));
+
 app.listen(process.env.PORT, function(){
     console.log(`___________________________________________`);
-    console.log(`SERVER: DONE`);
-    console.log(`PORT: ${process.env.PORT}`);
+    console.log("\x1b[44m%s\x1b[0m", `[SERVER]: DONE`);
+    console.log("\x1b[33m%s\x1b[0m", `PORT: ${process.env.PORT}`);    
     console.log(`___________________________________________`);
 });
 
