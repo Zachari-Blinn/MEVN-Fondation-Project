@@ -13,7 +13,8 @@ require('dotenv').config({
 // Load database
 connectDB();
 
-const app = express(); // create your express app
+// Create express app
+const app = express();
 
 // make app use dependencies
 app.use(morgan('dev'));
@@ -21,6 +22,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.listen(process.env.PORT, function(){
-    console.log(`Server running on port: ${process.env.PORT}`);
+    console.log(`___________________________________________`);
+    console.log(`SERVER: DONE`);
+    console.log(`PORT: ${process.env.PORT}`);
+    console.log(`___________________________________________`);
 });
 
