@@ -37,15 +37,24 @@ router.put('/:id', async(req, res) => {
     }
 });
 
-//
 // @desc get all people
-router.get('/', async(req,res) => {
-    People.find(function(err, result){
+// @route GET /people
+router.get('/', async(req, res) => {
+    await People.find(function(err, result){
         if(err) res.send(err);
         
         res.json(result);
     });
+});
 
+// @desc get specified people
+// @route GET /people/:id
+router.get('/:id', async(req, res) => {
+    await People.findById(req.params.id, function (err, result) {
+        if(err) res.send(err);
+        
+        res.json(result);
+    })
 })
 
 module.exports = router;
