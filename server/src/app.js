@@ -22,7 +22,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-// app.use('/people', require('./routes/model.people'));
+app.use('/people', require('./routes/route.people'));
+app.use('/test', require('./routes/test'));
+
 
 app.listen(process.env.PORT, function(){
     console.log(`___________________________________________`);

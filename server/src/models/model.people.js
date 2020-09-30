@@ -34,7 +34,7 @@ const PeopleSchema = new mongoose.Schema({
         required: false
     },
     gender: {
-        type: boolean,
+        type: Boolean,
         required: false
     },
     cv_filename: {
@@ -45,10 +45,14 @@ const PeopleSchema = new mongoose.Schema({
         type: Boolean,
         required: false
     },
-    advertisements: [
+    isActive: {
+        type: Boolean,
+        required: false
+    },
+    candidacies: [
         {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "advertisement"
+        ref: "candidacy"
     }
     ]
 }, {

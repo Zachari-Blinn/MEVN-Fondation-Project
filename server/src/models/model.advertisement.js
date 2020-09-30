@@ -9,15 +9,19 @@ const AdvertisementSchema = new mongoose.Schema({
         type: text,
         required: false
     },
-    peoples: [
+    isActive: {
+        type: Boolean,
+        required: false
+    },
+    candidacies: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "people"
+            ref: "candidacy"
         }
     ],
-    compagny: {
+    company: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "compagny"
+        ref: "company"
     }
 }, {
     timestamps: true
