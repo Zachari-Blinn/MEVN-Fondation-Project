@@ -8,9 +8,17 @@ const connectDB = async () => {
             useFindAndModify: false
         });
 
-        console.log("\x1b[44m%s\x1b[0m", `[DB]: DONE`);
-        console.log("\x1b[33m%s\x1b[0m", `URI: ${connection.connection.host}`);
-        console.log(`___________________________________________`);
+        function State(type, status, address) {
+            this.type = type;
+            this.status = status;
+            this.address = address;
+        }
+
+        let db = new State("DataBase", "OK", connection.connection.host);
+
+        console.log("\x1b[44m%s\x1b[0m" ,"Connecting Database");
+        console.table([db]);
+
     } catch (error) {
         console.error(error);
         process.exit(1);

@@ -6,8 +6,15 @@ const People = require('../models/model.people');
 // @desc Create people
 // @route POST /people
 router.post('/', async(req, res) => {
-    try{        
-        await People.create(req.body);
+    try{
+        //Define data send to create people
+        console.log(req.body);
+
+        await People.create(req.body, function(err, result){
+            if(err) res.send(err);
+        
+            res.json(result);
+        });
     }catch(error){
         console.log(error);
     }
@@ -16,12 +23,14 @@ router.post('/', async(req, res) => {
 // @desc Change people
 // @route PUT /people/:id
 router.put('/:id', async(req, res) => {
-    try{
-        let people = await People.findById(req.params.id).lean();
-        
+    try{        
         await People.findOneAndUpdate({_id: req.params.id}, req.body, {
             new: true,
             runValidators: true
+        }, function(err, result){
+            if(err) res.send(err);
+        
+            res.json(result);
         });
     }catch(error){
         console.log(error);
@@ -31,11 +40,12 @@ router.put('/:id', async(req, res) => {
 //
 // @desc get all people
 router.get('/', async(req,res) => {
-    try{
-        await People.find();
-    }catch(error){
-        console.log(error);
-    }
+    People.find(function(err, result){
+        if(err) res.send(err);
+        
+        res.json(result);
+    });
+
 })
 
 module.exports = router;

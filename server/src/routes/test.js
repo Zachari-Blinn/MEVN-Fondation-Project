@@ -5,9 +5,13 @@ const Test = require('../models/test');
 
 // @desc Create test
 // @route POST /test
-router.post('/', async(req) => {
+router.post('/', async(req, res) => {
     try{        
-        await Test.create(req.body);
+        await Test.create(req.body, function(err, result) {
+            if(err) res.send(err);
+        
+            res.json(result);
+        });
     }catch(error){
         console.log(error);
     }

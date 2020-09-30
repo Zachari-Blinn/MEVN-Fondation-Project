@@ -18,18 +18,31 @@ const app = express();
 
 // make app use dependencies
 app.use(morgan('dev'));
+
+// parse requests of content-type - application/json
 app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cors());
 
 // Routes
 app.use('/people', require('./routes/route.people'));
 app.use('/test', require('./routes/test'));
 
+function State(type, status, port, env) {
+    this.type = type;
+    this.status = status;
+    this.port = port;
+    this.env = env;
+}
+
+let server = new State("SERVER", "OK", process.env.PORT, process.env.NODE_ENV);
 
 app.listen(process.env.PORT, function(){
-    console.log(`___________________________________________`);
-    console.log("\x1b[44m%s\x1b[0m", `[SERVER]: DONE`);
-    console.log("\x1b[33m%s\x1b[0m", `PORT: ${process.env.PORT}`);    
-    console.log(`___________________________________________`);
+    console.clear();
+    console.log("\x1b[44m%s\x1b[0m" ,"Starting Server");
+    console.table([server]);
 });
 
