@@ -2,13 +2,22 @@ const express = require('express');
 const router = express.Router();
 
 const Candidacy = require('../models/candidacy.model');
+const People = require('../models/people.model');
+const Advertisement = require('../models/advertisement.model');
 
 // @desc Create candidacy
-// @route POST /candidacy
-router.post('/', async(req, res) => {
+// @route POST /candidacy/:peopleId/:advertisementId
+router.post('/:peopleId/:advertisementId', async(req, res) => {
     try{
-        //Define data send to create candidacy
-        console.log(req.body);
+        //TODO get current user 
+
+        req.body.people = req.params.peopleId;
+        req.body.advertisement = req.params.advertisementId;
+
+        await Candidacy.create(req.body).then(candidacy => (
+            People.findByIdAndUpdate(req.params.peopleId, {$push: { candidacies: candidacy._id }}),
+            Advertisement.findByIdAndUpdate(req.params.advertisementId, {$push: { candidacies: candidacy._id }})
+        ));
 
         await Candidacy.create(req.body, function(err, result){
             if(err) res.send(err);
@@ -18,7 +27,7 @@ router.post('/', async(req, res) => {
     }catch(error){
         console.log(error);
     }
-});
+});200
 
 // @desc Change candidacy
 // @route PUT /candidacy/:id
