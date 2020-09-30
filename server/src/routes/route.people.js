@@ -57,4 +57,14 @@ router.get('/:id', async(req, res) => {
     })
 })
 
+// @desc remove specified people
+// @route REMOVE /people/:id
+router.delete('/:id', async(req, res) => {
+    await People.deleteOne(req.params.id, function (err, result) {
+        if(err) res.send(err);
+        
+        res.json(result);
+    })
+})
+
 module.exports = router;
