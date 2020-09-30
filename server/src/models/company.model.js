@@ -18,6 +18,12 @@ const CompanySchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "advertisement"
         }
+    ],
+    employee: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "People"
+        }
     ]
 }, {
     timestamps: true

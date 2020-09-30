@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const CandidacySchema = new mongoose.Schema({
     status: {
-        type: string,
+        type: String,
+        required: false
+    },
+    cover_letter: {
+        type: String,
         required: false
     },
     advertisement: {

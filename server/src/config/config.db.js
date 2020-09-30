@@ -14,7 +14,7 @@ const connectDB = async () => {
             this.address = address;
         }
 
-        let db = new State("DataBase", "OK", connection.connection.host);
+        let db = new State("DB", "OK", connection.connection.host);
 
         console.log("\x1b[44m%s\x1b[0m" ,"Connecting Database");
         console.table([db]);

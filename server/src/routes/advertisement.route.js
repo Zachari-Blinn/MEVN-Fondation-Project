@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const People = require('../models/model.people');
+const Advertisement = require('../models/advertisement.model');
 
-// @desc Create people
-// @route POST /people
+// @desc Create advertisement
+// @route POST /advertisement
 router.post('/', async(req, res) => {
     try{
-        //Define data send to create people
+        //Define data send to create advertisement
         console.log(req.body);
 
-        await People.create(req.body, function(err, result){
+        await Advertisement.create(req.body, function(err, result){
             if(err) res.send(err);
         
             res.json(result);
@@ -20,11 +20,11 @@ router.post('/', async(req, res) => {
     }
 });
 
-// @desc Change people
-// @route PUT /people/:id
+// @desc Change advertisement
+// @route PUT /advertisement/:id
 router.put('/:id', async(req, res) => {
     try{        
-        await People.findOneAndUpdate({_id: req.params.id}, req.body, {
+        await Advertisement.findOneAndUpdate({_id: req.params.id}, req.body, {
             new: true,
             runValidators: true
         }, function(err, result){
@@ -37,30 +37,30 @@ router.put('/:id', async(req, res) => {
     }
 });
 
-// @desc get all people
-// @route GET /people
+// @desc get all advertisement
+// @route GET /advertisement
 router.get('/', async(req, res) => {
-    await People.find(function(err, result){
+    await Advertisement.find(function(err, result){
         if(err) res.send(err);
         
         res.json(result);
     });
 });
 
-// @desc get specified people
-// @route GET /people/:id
+// @desc get specified advertisement
+// @route GET /advertisement/:id
 router.get('/:id', async(req, res) => {
-    await People.findById(req.params.id, function (err, result) {
+    await Advertisement.findById(req.params.id, function (err, result) {
         if(err) res.send(err);
         
         res.json(result);
     })
 })
 
-// @desc remove specified people
-// @route REMOVE /people/:id
+// @desc remove specified advertisement
+// @route REMOVE /advertisement/:id
 router.delete('/:id', async(req, res) => {
-    await People.deleteOne(req.params.id, function (err, result) {
+    await Advertisement.deleteOne(req.params.id, function (err, result) {
         if(err) res.send(err);
         
         res.json(result);

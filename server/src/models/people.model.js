@@ -54,6 +54,12 @@ const PeopleSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "candidacy"
     }
+    ],
+    companies: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Company"
+        }
     ]
 }, {
     timestamps: true

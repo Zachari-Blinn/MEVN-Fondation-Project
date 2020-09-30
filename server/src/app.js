@@ -26,7 +26,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use('/people', require('./routes/route.people'));
+app.use('/advertisement', require('./routes/advertisement.route'));
+app.use('/people', require('./routes/people.route'));
+app.use('/company', require('./routes/company.route'));
+app.use('/candidacy', require('./routes/candidacy.route'));
+
+
 app.use('/test', require('./routes/test'));
 
 function State(type, status, port, env) {

@@ -6,7 +6,7 @@ const AdvertisementSchema = new mongoose.Schema({
         required: false
     },
     description: {
-        type: text,
+        type: String,
         required: false
     },
     isActive: {
