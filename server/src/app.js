@@ -23,16 +23,25 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+//setup public folder
+app.use(express.static('public'));
+
 app.use(cors());
 
-// Routes
+// Function routes
 app.use('/advertisement', require('./routes/advertisement.route'));
 app.use('/people', require('./routes/people.route'));
 app.use('/company', require('./routes/company.route'));
 app.use('/candidacy', require('./routes/candidacy.route'));
-
-
 app.use('/test', require('./routes/test'));
+
+// Views routes
+app.get('/',function (req, res) {res.render('home')});
+app.get('/login',function (req, res) {res.render('layouts/login')});
 
 function State(type, status, port, env) {
     this.type = type;

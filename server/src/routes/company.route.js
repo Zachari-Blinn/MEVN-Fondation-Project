@@ -2,14 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const Company = require('../models/company.model');
+const People = require('../models/people.model');
 
 // @desc Create company
 // @route POST /company
 router.post('/', async(req, res) => {
     try{
-        //Define data send to create company
-        console.log(req.body);
-
         await Company.create(req.body, function(err, result){
             if(err) res.send(err);
         
