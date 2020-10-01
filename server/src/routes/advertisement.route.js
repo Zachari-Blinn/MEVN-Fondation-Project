@@ -7,9 +7,6 @@ const Advertisement = require('../models/advertisement.model');
 // @route POST /advertisement
 router.post('/', async(req, res) => {
     try{
-        //Define data send to create advertisement
-        console.log(req.body);
-
         await Advertisement.create(req.body, function(err, result){
             if(err) res.send(err);
         

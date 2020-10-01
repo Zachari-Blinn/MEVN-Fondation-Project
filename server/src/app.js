@@ -41,7 +41,6 @@ app.use('/test', require('./routes/test'));
 
 // Views routes
 app.get('/',function (req, res) {res.render('home')});
-app.get('/login',function (req, res) {res.render('layouts/login')});
 
 function State(type, status, port, env) {
     this.type = type;
