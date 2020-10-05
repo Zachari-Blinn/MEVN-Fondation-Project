@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang="">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title></title>
-  <!-- Google Icon -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-  <!-- Vuejs -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-  <!-- Axios -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-
-<body>
-  <div id="app">
-    <header></header>
-    <main>
-
+<template>
       <div class="container">
         <div class="row">
           <div class="col s12 m12 l9 xl9">
@@ -35,11 +11,11 @@
                     <p v-if="errors.length">
                       <b>Please correct the following error(s):</b>
                       <ul>
-                        <li v-for="error in errors" class="red-text text-darken-1">
+                        <li v-for="error in errors" :key="error.id" class="red-text text-darken-1">
                           <span class="material-icons">
                             error
                           </span>
-                          <span style="font-weight: bold;">
+                          <span style="font-weight: bold">
                             {{ error }}
                           </span>
                         </li>
@@ -134,7 +110,7 @@
                               <input type="file">
                             </div>
                             <div class="file-path-wrapper">
-                              <input type="file-path validate" type="text" v-model="step_3.file">
+                              <input type="file-path validate" v-model="step_3.file">
                             </div>
                           </div>
                         </div>
@@ -168,112 +144,78 @@
                         <button class="btn left" type="button" @click.prevent="goToStep(3)">Back</button>
                       </div>
                     </template>
-
                   </form>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-
       </div>
+</template>
 
-    </main>
-    <footer></footer>
-    <!-- Compiled and minified JavaScript -->
-  </div>
-
-  <style>
-    .material-icons {
-      vertical-align: middle;
-      margin-bottom: 5px;
-    }
-  </style>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-  <script>
-    Vue.component('step_1', {
-      template: '#step_1',
-      props: [
-        'current_step',
-        'step_1'
-      ]
-    });
-
-    Vue.component('step_2', {
-      template: '#step_2',
-      props: [
-        'current_step',
-        'step_2'
-      ]
-    });
-
-    Vue.component('step_3', {
-      template: '#step_3',
-      props: [
-        'current_step',
-        'step_3'
-      ]
-    });
-
-    Vue.component('step_4', {
-      template: '#step_4',
-      props: [
-        'current_step',
-        'step_1',
-        'step_2',
-        'step_3'
-      ]
-    });
-
-    let app = new Vue({
-      el: '#app',
-      data: {
-        title: 'Company',
-        current_step: 1,
-        errors: [],
-        step_1: {
-          name: null,
-          country: null,
-          city: null,
-          address: null
-        },
-        step_2: {
-          description: null,
-          size: null
-        },
-        step_3: {
-          file: null
-        }
+<script>
+export default {
+  data () {
+    return {
+      title: 'Company',
+      current_step: 1,
+      errors: [],
+      step_1: {
+        name: null,
+        country: null,
+        city: null,
+        address: null
       },
-      computed: {
-        isComplete() {
-          return this.checkStep1();
-        },
+      step_2: {
+        description: null,
+        size: null
       },
-      methods: {
-        checkStep1: function (e) {
-          this.errors = [];
-
-          if (!this.step_1.name) {
-            this.errors.push("Name required");
-          }
-
-          if (!this.step_1.country) {
-            this.errors.push("Country required");
-          }
-        },
-        goToStep: function (step) {
-          this.current_step = step;
-        },
-        confirmed: function () {
-          console.log("Confirmation");
-        },
+      step_3: {
+        file: null
       }
-    });
-  </script>
-</body>
+    }
+  },
+  computed: {
+    isComplete () {
+      return this.checkStep1()
+    }
+  },
+  methods: {
+    checkStep1: function (e) {
+      this.errors = []
 
-</html>
+      if (!this.step_1.name) {
+        this.errors.push('Name required')
+      }
+
+      if (!this.step_1.country) {
+        this.errors.push('Country required')
+      }
+    },
+    goToStep: function (step) {
+      this.current_step = step
+    },
+    confirmed: function () {
+      console.log('Confirmation')
+    }
+  },
+  components: {
+    step_1: {
+      template: '#step_1',
+      props: ['current_step', 'step_1']
+    },
+    step_2: {
+      template: '#step_2',
+      props: ['current_step', 'step_2']
+    },
+    step_3: {
+      template: '#step_3',
+      props: ['current_step', 'step_3']
+    },
+    step_4: {
+      template: '#step_4',
+      props: ['current_step', 'step_1', 'step_2', 'step_3']
+    }
+  }
+}
+</script>

@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    {{ message }}
+    <h1>{{page_name}} page</h1>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue !'
+export default {
+  data () {
+    return {
+      page_name: 'Home controller'
+    }
   }
-})
+}
 </script>
