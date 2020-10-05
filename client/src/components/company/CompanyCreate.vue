@@ -154,6 +154,9 @@
 </template>
 
 <script>
+const axios = require('axios')
+const API_URL = 'http://localhost:8081/company'
+
 export default {
   data () {
     return {
@@ -168,13 +171,14 @@ export default {
       },
       step_2: {
         description: null,
-        size: null
+        size: ''
       },
       step_3: {
         file: null
       }
     }
   },
+
   computed: {
     isComplete () {
       return this.checkStep1()
@@ -197,6 +201,21 @@ export default {
     },
     confirmed: function () {
       console.log('Confirmation')
+
+      axios
+      .post(API_URL, {
+        name: this.step_1.name,
+        country: this.step_1.country,
+        city: this.step_1.city,
+        address: this.step_1.address,
+        description: this.step_2.description,
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
     }
   },
   components: {

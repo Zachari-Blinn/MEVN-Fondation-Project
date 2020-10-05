@@ -8,6 +8,7 @@ const People = require('../models/people.model');
 // @route POST /company
 router.post('/', async(req, res) => {
     try{
+        console.log("test");
         await Company.create(req.body, function(err, result){
             if(err) res.send(err);
         
