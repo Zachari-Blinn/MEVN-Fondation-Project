@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 const People = require('../models/people.model');
 
@@ -7,13 +8,23 @@ const People = require('../models/people.model');
 // @route POST /people
 router.post('/', async(req, res) => {
     try{
-        //Define data send to create people
-        console.log(req.body);
-
-        await People.create(req.body, function(err, result){
-            if(err) res.send(err);
+        ///TODO test if user exist 
+        await People.findOne({email: req.body.email}, function(err, user){
+            if(err){
+                console.log(err);
+            }
+            if(!user){
+                bcrypt.hash(req.body.password, 10).then(cryptedPassword => (
+                    req.body.password = cryptedPassword,
         
-            res.json(result);
+                    People.create(req.body, function(err, result){
+                        if(err) res.send(err);
+                        res.json(result);
+                    })
+                ));
+            }else{
+                console.log("User already existing !");
+            }
         });
     }catch(error){
         console.log(error);

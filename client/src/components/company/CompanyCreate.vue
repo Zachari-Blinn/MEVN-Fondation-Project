@@ -29,7 +29,7 @@
                         <!-- Name -->
                         <div class="row">
                           <div class="input-field col s12">
-                            <input id="name" type="text" class="validate" v-model="step_1.name" required>
+                            <input id="name" type="text" class="validate" v-model="step_1.name" required autofocus>
                             <label for="name">Company Name</label>
                             <span class="helper-text" data-error="wrong" data-success="right"></span>
                           </div>
@@ -82,8 +82,8 @@
                         <!-- Size -->
                         <div class="row">
                           <div class="input-field col s12">
-                            <select class="browser-default">
-                              <option value="" disabled selected>Choose your option</option>
+                            <select class="browser-default" v-model="step_2.size">
+                              <option value="" disabled>Choose your option</option>
                               <option value="1">Option 1</option>
                               <option value="2">Option 2</option>
                               <option value="3">Option 3</option>
@@ -200,8 +200,7 @@ export default {
       this.current_step = step
     },
     confirmed: function () {
-      console.log('Confirmation')
-
+      // Post company data in database
       axios
       .post(API_URL, {
         name: this.step_1.name,
@@ -209,6 +208,7 @@ export default {
         city: this.step_1.city,
         address: this.step_1.address,
         description: this.step_2.description,
+        size: this.step_2.size
       })
       .then(function (response) {
         console.log(response)
@@ -216,6 +216,9 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
+
+      // Redirect to Home
+      this.$router.push({ name: 'Home' })
     }
   },
   components: {
