@@ -38,6 +38,23 @@ router.post('/', async(req, res) => {
     }
 });
 
+router.post('/login', async (req, res) => {
+    await People.findOne({email: req.body.email}, async function(err, people){
+        if(people == null){
+            return res.status(400).send('Cannot find user');
+        }
+        try {
+            if(await bcrypt.compare(req.body.password, people.password)){
+                res.send('Success');
+            }else{
+                res.send('Not Allowed');
+            }
+        } catch (error) {
+            res.status(500).send();
+        }
+    })
+})
+
 // @desc Change people
 // @route PUT /people/:id
 router.put('/:id', async(req, res) => {
