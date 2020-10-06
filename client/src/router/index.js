@@ -5,7 +5,6 @@ import CompanyCreate from '@/components/company/CompanyCreate'
 import Login from '@/components/user/login'
 import Register from '@/components/user/Register'
 
-
 Vue.use(Router)
 
 export default new Router({

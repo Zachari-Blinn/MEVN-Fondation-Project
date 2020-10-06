@@ -7,12 +7,19 @@ const People = require('../models/people.model');
 // @desc Create people
 // @route POST /people
 router.post('/', async(req, res) => {
+    const { email, password } = req.body;
+
+    if(!email || !password){
+        return res.status(400).json({error: "Email and password are required"});
+    }
+
     try{
-        ///TODO test if user exist 
+        // Check if user already existing
         await People.findOne({email: req.body.email}, function(err, user){
             if(err){
                 console.log(err);
             }
+            // if user isn't existing crypt password and push to database
             if(!user){
                 bcrypt.hash(req.body.password, 10).then(cryptedPassword => (
                     req.body.password = cryptedPassword,
@@ -23,7 +30,7 @@ router.post('/', async(req, res) => {
                     })
                 ));
             }else{
-                console.log("User already existing !");
+                return res.status(409).json({error: "User already existing"});
             }
         });
     }catch(error){
@@ -77,5 +84,6 @@ router.delete('/:id', async(req, res) => {
         res.json(result);
     })
 })
+
 
 module.exports = router;

@@ -3,6 +3,21 @@
     <h1>Register</h1>
 
     <form action="" method="post">
+
+    <p v-if="errors.length">
+        <b>Please correct the following error(s):</b>
+        <ul>
+        <li v-for="error in errors" :key="error.id" class="red-text text-darken-1">
+            <span class="material-icons">
+            error
+            </span>
+            <span style="font-weight: bold">
+            {{ error }}
+            </span>
+        </li>
+        </ul>
+    </p>
+
       <!-- Step 1 -->
       <template id="step_1" v-if="current_step == 1">
         <div>
@@ -20,7 +35,7 @@
         </div>
         <!-- Button -->
         <div class="row">
-        <button class="btn right" type="button" @click.prevent="goToStep(2)">Next</button>
+            <button class="btn right" type="button" @click.prevent="goToStep(2)">Next</button>
         </div>
       </template>
 
@@ -30,9 +45,9 @@
           <label for="gender">Gender</label>
           <select name="gender" id="gender" v-model="step_2.gender">
             <option value="" disabled>Choose your option</option>
-            <option value="1">Unspecified</option>
-            <option value="2">Man</option>
-            <option value="3">Woman</option>
+            <option value="">Unspecified</option>
+            <option value="0">Man</option>
+            <option value="1">Woman</option>
           </select>
         </div>
         <div>
@@ -41,8 +56,8 @@
         </div>
         <!-- Button -->
         <div class="row">
-        <button class="btn right" type="button" @click.prevent="goToStep(3)">Next</button>
-        <button class="btn left" type="button" @click.prevent="goToStep(1)">Back</button>
+            <button class="btn right" type="button" @click.prevent="goToStep(3)">Next</button>
+            <button class="btn left" type="button" @click.prevent="goToStep(1)">Back</button>
         </div>
       </template>
 
@@ -62,8 +77,8 @@
         </div>
         <!-- Button -->
         <div class="row">
-        <button class="btn right" type="button" @click.prevent="goToStep(4)">Next</button>
-        <button class="btn left" type="button" @click.prevent="goToStep(2)">Back</button>
+            <button class="btn right" type="button" @click.prevent="goToStep(4)">Next</button>
+            <button class="btn left" type="button" @click.prevent="goToStep(2)">Back</button>
         </div>
       </template>
 
@@ -133,24 +148,14 @@ export default {
       props: ['current_step', 'step_1', 'step_2', 'step_3']
     }
   },
-  computed: {},
+  computed: {
+
+  },
   methods: {
     goToStep: function (step) {
       this.current_step = step
     },
     confirmed: function () {
-        console.log(
-            this.step_1.firstname,
-            this.step_1.lastname,
-            this.step_2.gender,
-            this.step_2.birthday,
-            this.step_3.country,
-            this.step_3.city,
-            this.step_3.address,
-            this.step_4.email,
-            this.step_4.password
-        )
-
         // Post people data in database
         axios
             .post(API_URL, {
