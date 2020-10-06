@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1>Login</h1>
-      <form id="app" @submit="checkForm" action="" method="">
+      <form>
         <div>
             <label for="email">Email</label>
             <input id="email" v-model="email" type="text" name="email" required>
@@ -11,7 +11,7 @@
             <input id="password" v-model="password" type="password" name="password" required>
         </div>
         <div>
-            <input type="submit" value="Submit">
+          <button class="btn" type="submit">Login</button>
         </div>
       </form>
   </div>
@@ -20,7 +20,10 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      email: null,
+      password: null
+    }
   }
 }
 </script>
