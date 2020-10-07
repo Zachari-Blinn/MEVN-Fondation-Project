@@ -7,6 +7,7 @@
       <router-link to="/login">Login</router-link>
       <router-link to="/company/create">Company create</router-link>
       <router-link to="/advertisement/create">Advertisement create</router-link>
+      <router-link to="/candidacy/create">Candidacy create</router-link>
     </nav>
   </div>
 </template>

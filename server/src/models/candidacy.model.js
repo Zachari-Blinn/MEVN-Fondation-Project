@@ -5,7 +5,15 @@ const CandidacySchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    cover_letter: {
+    description: {
+        type: String,
+        required: false
+    },
+    cover_letter_filename:  {
+        type: String,
+        required: false
+    },
+    cv_filename: {
         type: String,
         required: false
     },

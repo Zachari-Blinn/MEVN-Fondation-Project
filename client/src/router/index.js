@@ -5,6 +5,7 @@ import CompanyCreate from '@/components/company/Create'
 import Login from '@/components/user/Login'
 import Register from '@/components/user/Register'
 import AdvertisementCreate from '@/components/advertisement/Create'
+import CandidacyCreate from '@/components/candidacy/Create'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/advertisement/create',
       name: 'Advertisement_create',
       component: AdvertisementCreate
+    },
+    {
+      path: '/candidacy/create',
+      name: 'Candidacy_create',
+      component: CandidacyCreate
     }
   ]
 })
