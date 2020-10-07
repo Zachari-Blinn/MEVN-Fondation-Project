@@ -178,7 +178,6 @@ export default {
       }
     }
   },
-
   computed: {
     isComplete () {
       return this.checkStep1()

@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import CompanyCreate from '@/components/company/Create'
 import Login from '@/components/user/Login'
 import Register from '@/components/user/Register'
+import AdvertisementCreate from '@/components/advertisement/Create'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/advertisement/create',
+      name: 'Advertisement_create',
+      component: AdvertisementCreate
     }
   ]
 })
