@@ -11,7 +11,8 @@ const AdvertisementSchema = new mongoose.Schema({
     },
     salary: {
         type: Number,
-        required: false
+        required: false,
+        min: 0
     },
     starting_date: {
         type: Date,
@@ -23,15 +24,19 @@ const AdvertisementSchema = new mongoose.Schema({
     },
     contract_type: {
         type: String,
-        required: false
+        required: false,
+        enum: ['CDI', 'CDD', 'CTT', 'CUI', 'CAE', 'CIE']
     },
     education: {
-        type: String,
-        required: false
+        type: Number,
+        required: false,
+        min: 0,
+        max: 8
     },
     remote: {
         type: String,
-        required: false
+        required: false,
+        enum: ['unremote', 'partially_remote', 'distributed_team', 'full_remote']
     },
     language: {
         type: String,
@@ -41,12 +46,10 @@ const AdvertisementSchema = new mongoose.Schema({
         type: Boolean,
         required: false
     },
-    candidacies: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "candidacy"
-        }
-    ],
+    candidacies: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "candidacy"
+    }],
     company: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "company"

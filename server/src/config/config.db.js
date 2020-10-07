@@ -16,7 +16,7 @@ const connectDB = async () => {
 
         let db = new State("DB", "OK", connection.connection.host);
 
-        console.log("\x1b[44m%s\x1b[0m" ,"Connecting Database");
+        console.log("\x1b[44m%s\x1b[0m", "Connecting Database");
         console.table([db]);
 
     } catch (error) {

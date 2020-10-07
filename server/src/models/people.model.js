@@ -49,18 +49,14 @@ const PeopleSchema = new mongoose.Schema({
         type: Boolean,
         required: false
     },
-    candidacies: [
-        {
+    candidacies: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "candidacy"
-    }
-    ],
-    companies: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Company"
-        }
-    ]
+    }],
+    companies: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Company"
+    }]
 }, {
     timestamps: true
 });

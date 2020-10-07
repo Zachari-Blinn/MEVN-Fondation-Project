@@ -54,7 +54,7 @@
         <label for="education">Education</label>
         <select name="education" id="education" v-model="education">
           <option value="" disabled>Please select an option</option>
-          <option value="">Whatever</option>
+          <option value="0">Whatever</option>
           <option value="1">Level 1</option>
           <option value="2">Level 2</option>
           <option value="3">Level 3</option>

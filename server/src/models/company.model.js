@@ -36,18 +36,14 @@ const CompanySchema = new mongoose.Schema({
             "5000 et +" //GE
         ]
     },
-    advertisements: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "advertisement"
-        }
-    ],
-    employee: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "People"
-        }
-    ]
+    advertisements: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "advertisement"
+    }],
+    employee: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "People"
+    }]
 }, {
     timestamps: true
 });
