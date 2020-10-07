@@ -38,6 +38,9 @@
 </template>
 
 <script>
+import axios from "axios";
+const API_URL = "http://localhost:8081/candidacy";
+
 export default {
   data () {
     return {
@@ -45,6 +48,27 @@ export default {
       description: null,
       cover_letter_filename: null,
       cv_filename: null
+    }
+  },
+  methods: {
+    complete: function () {
+      // Post company data in database
+      axios
+        .post(API_URL, {
+          name: this.name,
+          description: this.description,
+          cover_letter_filename: this.salary,
+          cv_filename: this.starting_date
+        })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+
+      // Redirect to Home
+      this.$router.push({ name: "Home" })
     }
   }
 }
