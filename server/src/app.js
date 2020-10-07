@@ -6,7 +6,6 @@ const session = require('express-session');
 const morgan = require('morgan');
 const path = require('path');
 const connectDB = require('./config/config.db.js');
-const router = express.Router();
 
 require('dotenv').config({path: './src/config/config.env'});
 
@@ -39,7 +38,6 @@ app.use('/advertisement', require('./routes/advertisement.route'));
 app.use('/people', require('./routes/people.route'));
 app.use('/company', require('./routes/company.route'));
 app.use('/candidacy', require('./routes/candidacy.route'));
-app.use('/test', require('./routes/test'));
 
 // Views routes
 app.get('/',function (req, res) {res.render('home')});
