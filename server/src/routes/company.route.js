@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+var cors = require('cors');
 
 const Company = require('../models/company.model');
 const People = require('../models/people.model');
+
+router.use(cors());
 
 // @desc Create company
 // @route POST /company

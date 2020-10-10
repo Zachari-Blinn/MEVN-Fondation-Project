@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+var cors = require('cors');
 
 const Advertisement = require('../models/advertisement.model');
+
+router.use(cors());
 
 // @desc Create advertisement
 // @route POST /advertisement

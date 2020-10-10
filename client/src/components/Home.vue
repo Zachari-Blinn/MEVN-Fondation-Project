@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      page_name: 'Home controller'
+      page_name: 'Home controller',
     }
   }
 }

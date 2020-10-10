@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+var cors = require('cors');
 
 const People = require('../models/people.model');
+
+router.use(cors());
 
 // @desc Create people
 // @route POST /people
@@ -91,9 +94,9 @@ router.post('/token', (req, res) => {
             name: people.email
         });
 
-        res.json({
-            accessToken: accessToken
-        });
+        res.json(
+            accessToken
+        );
     })
 })
 

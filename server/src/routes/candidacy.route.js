@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const authenticateToken = require('../middleware/auth');
+var cors = require('cors');
 
 const Candidacy = require('../models/candidacy.model');
 const People = require('../models/people.model');
 const Advertisement = require('../models/advertisement.model');
+
+router.use(cors());
 
 // @desc Create candidacy
 // @route POST /candidacy/:peopleId/:advertisementId

@@ -10,21 +10,24 @@ import CandidacyCreate from '@/components/candidacy/Create'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  mode: 'history',
+  routes: [{
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
     },
     {
       path: '/company/create',
       name: 'Company_create',
-      component: CompanyCreate
+      component: CompanyCreate,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
     },
     {
       path: '/register',
@@ -34,12 +37,12 @@ export default new Router({
     {
       path: '/advertisement/create',
       name: 'Advertisement_create',
-      component: AdvertisementCreate
+      component: AdvertisementCreate,
     },
     {
       path: '/candidacy/create',
       name: 'Candidacy_create',
-      component: CandidacyCreate
+      component: CandidacyCreate,
     }
   ]
 })
