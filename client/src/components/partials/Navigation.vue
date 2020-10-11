@@ -14,7 +14,7 @@
 
 <script>
 import store from "../../store";
-import axios from "axios";
+import axios from 'axios';
 const API_URL = 'http://localhost:8081/people';
 
 export default {
@@ -29,14 +29,22 @@ export default {
       this.$store.dispatch("logout").then(() => {
         this.$router.push("/login");
       });
-    },
+    }
   },
   mounted () {
-    axios
-      .get(API_URL)
-      .then((response) => (
-        console.log(response.data)
-      ));
-  },
+    const access_token = localStorage.getItem('token')
+
+    axios.get(API_URL, {
+      headers: {
+        'Authorization': `Bearer ${access_token}`
+      }
+    })
+    .then((res) => {
+      console.log(res.data)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }
 };
 </script>

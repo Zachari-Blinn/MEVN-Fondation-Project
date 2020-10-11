@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-var cors = require('cors');
+const cors = require('cors');
+const checkAuth = require('../middleware/check-auth');
 
 const People = require('../models/people.model');
 
@@ -11,11 +12,9 @@ router.use(cors());
 // @desc Create people
 // @route POST /people
 router.post('/', async (req, res) => {
-    const {
-        email,
-        password
-    } = req.body;
+    const { email, password } = req.body;
 
+    // if auth is null
     if (!email || !password) {
         return res.status(400).json({
             error: "Email and password are required"
@@ -52,6 +51,16 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+
+    const { email, password } = req.body;
+
+    // if auth is null
+    if (!email || !password) {
+        return res.status(400).json({
+            error: "Email and password are required"
+        });
+    }
+
     await People.findOne({
         email: req.body.email
     }, async function (err, people) {
@@ -60,16 +69,22 @@ router.post('/login', async (req, res) => {
         }
         try {
             if (await bcrypt.compare(req.body.password, people.password)) {
-                const accessToken = generateAccessToken(people);
+                const token = jwt.sign({
+                    email: people.email,
+                    userId: people._id
+                },
+                    process.env.ACCESS_TOKEN_SECRET
+                );
 
                 res.status(200).send({
                     auth: true,
-                    token: accessToken,
-                    people: people
+                    message: "Auth successful",
+                    token: token,
                 });
             } else {
-                res.status(401).send({
+                res.status(404).send({
                     auth: false,
+                    message: "Auth failed",
                     token: null
                 });
             }
@@ -78,33 +93,6 @@ router.post('/login', async (req, res) => {
         }
     })
 })
-
-
-router.post('/token', (req, res) => {
-    const refreshToken = req.body.token;
-
-    if (refreshToken == null) return res.sendStatus(401);
-
-    if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
-
-    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, people) => {
-        if (err) return res.sendStatus(403);
-
-        const accessToken = generateAccessToken({
-            name: people.email
-        });
-
-        res.json(
-            accessToken
-        );
-    })
-})
-
-function generateAccessToken(people) {
-    return jwt.sign({
-        email: people.email
-    }, process.env.ACCESS_TOKEN_SECRET);
-}
 
 // @desc Change people
 // @route PUT /people/:id
@@ -127,7 +115,7 @@ router.put('/:id', async (req, res) => {
 
 // @desc get all people
 // @route GET /people
-router.get('/', async (req, res) => {
+router.get('/', checkAuth(), async (req, res) => {
     await People.find(function (err, result) {
         if (err) res.send(err);
 
@@ -137,7 +125,7 @@ router.get('/', async (req, res) => {
 
 // @desc get specified people
 // @route GET /people/:id
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkAuth, async (req, res) => {
     await People.findById(req.params.id, function (err, result) {
         if (err) res.send(err);
 
@@ -158,8 +146,7 @@ router.delete('/:id', async (req, res) => {
 router.delete('/logout', (req, res) => {
     refreshTokens = refreshTokens.filter(token => token !== req.body.token);
 
-    res.sendStatus(204);
+    res.status(204);
 })
-
 
 module.exports = router;

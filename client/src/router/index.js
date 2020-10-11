@@ -14,20 +14,17 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'Home',
-      component: Home,
+      component: Home
     },
     {
       path: '/company/create',
       name: 'Company_create',
-      component: CompanyCreate,
-      meta: {
-        requiresAuth: true
-      }
+      component: CompanyCreate
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login,
+      component: Login
     },
     {
       path: '/register',
@@ -37,12 +34,12 @@ export default new Router({
     {
       path: '/advertisement/create',
       name: 'Advertisement_create',
-      component: AdvertisementCreate,
+      component: AdvertisementCreate
     },
     {
       path: '/candidacy/create',
       name: 'Candidacy_create',
-      component: CandidacyCreate,
+      component: CandidacyCreate
     }
   ]
 })
