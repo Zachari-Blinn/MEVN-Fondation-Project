@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authenticateToken = require('../middleware/auth');
+const checkAuth = require('../middleware/check-auth');
 var cors = require('cors');
 
 const Candidacy = require('../models/candidacy.model');
@@ -11,31 +11,27 @@ router.use(cors());
 
 // @desc Create candidacy
 // @route POST /candidacy/:peopleId/:advertisementId
-router.post('/:peopleId/:advertisementId', async (req, res) => {
+router.post('/', checkAuth, async (req, res) => {
     try {
         //TODO get current user 
+        if(!req.userData){
+            return res.status(400).json({
+                error: "UserData is required"
+            });
+        }
 
-        req.body.people = req.params.peopleId;
+        // Get current user and set for company
+        req.body.people = req.userData.userId;
         req.body.advertisement = req.params.advertisementId;
 
         await Candidacy.create(req.body).then(candidacy => (
-            People.findByIdAndUpdate(req.params.peopleId, {
-                $push: {
-                    candidacies: candidacy._id
-                }
-            }),
-            Advertisement.findByIdAndUpdate(req.params.advertisementId, {
+            People.findByIdAndUpdate(req.userData.userId, {
                 $push: {
                     candidacies: candidacy._id
                 }
             })
         ));
 
-        await Candidacy.create(req.body, function (err, result) {
-            if (err) res.send(err);
-
-            res.json(result);
-        });
     } catch (error) {
         console.log(error);
     }

@@ -29,11 +29,11 @@ const CompanySchema = new mongoose.Schema({
         type: String,
         required: false,
         enum: [
-            "1 à 9", //TPE
-            "10 à 49", //PE
-            "50 à 249", //ME
-            "250 à 4999", //ETI
-            "5000 et +" //GE
+            "TPE", //TPE
+            "PE", //PE
+            "ME", //ME
+            "ETI", //ETI
+            "GE" //GE
         ]
     },
     advertisements: [{

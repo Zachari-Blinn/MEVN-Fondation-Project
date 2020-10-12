@@ -113,11 +113,14 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// TEST FOR CHECK AUTH
 // @desc get all people
 // @route GET /people
-router.get('/', checkAuth(), async (req, res) => {
+router.get('/', checkAuth, async (req, res) => {
     await People.find(function (err, result) {
         if (err) res.send(err);
+
+        console.log(req.userData);
 
         res.json(result);
     });
@@ -125,7 +128,7 @@ router.get('/', checkAuth(), async (req, res) => {
 
 // @desc get specified people
 // @route GET /people/:id
-router.get('/:id', checkAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
     await People.findById(req.params.id, function (err, result) {
         if (err) res.send(err);
 

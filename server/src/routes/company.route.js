@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const checkAuth = require('../middleware/check-auth');
 var cors = require('cors');
 
 const Company = require('../models/company.model');
@@ -9,14 +10,27 @@ router.use(cors());
 
 // @desc Create company
 // @route POST /company
-router.post('/', async (req, res) => {
+router.post('/', checkAuth, async (req, res) => {
     try {
-        console.log("test");
-        await Company.create(req.body, function (err, result) {
-            if (err) res.send(err);
+        // Verify data is not null
+        if (!req.userData || !req.body.name || !req.body.country) {
+            return res.status(400).json({
+                error: "UserData is required"
+            });
+        }
 
-            res.json(result);
-        });
+        // Get current user and set for company
+        req.body.employee = req.userData.userId;
+
+        // Send data to database
+        await Company.create(req.body).then(company => (
+            People.findByIdAndUpdate(req.userData.userId, {
+                $push: {
+                    companies: company._id
+                }
+            })
+        ));
+
     } catch (error) {
         console.log(error);
     }
