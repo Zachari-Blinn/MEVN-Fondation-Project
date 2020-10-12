@@ -78,7 +78,7 @@
       </div>
       <div>
         <label for="language">Language</label>
-        <select name="language" id="language" v-model="language" multiple>
+        <select name="language" id="language" v-model="language">
           <option value="" disabled>Please select an option</option>
           <option value="">Whatever</option>
           <option value="en">English</option>

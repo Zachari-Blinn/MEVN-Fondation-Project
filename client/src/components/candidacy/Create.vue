@@ -55,6 +55,9 @@ export default {
       // Post company data in database
       axios
         .post(API_URL, {
+          headers: {
+            'Authorization': localStorage.token
+          },
           name: this.name,
           description: this.description,
           cover_letter_filename: this.salary,

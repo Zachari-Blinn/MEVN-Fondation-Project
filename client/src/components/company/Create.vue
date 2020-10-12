@@ -84,9 +84,10 @@
                           <div class="input-field col s12">
                             <select class="browser-default" v-model="step_2.size">
                               <option value="" disabled>Choose your option</option>
-                              <option value="1">Option 1</option>
-                              <option value="2">Option 2</option>
-                              <option value="3">Option 3</option>
+                              <option value="TPE">TPE</option>
+                              <option value="PE">PE</option>
+                              <option value="ETI">ETI</option>
+                              <option value="GE">GE</option>
                             </select>
                           </div>
                         </div>
@@ -202,6 +203,9 @@ export default {
       // Post company data in database
       axios
       .post(API_URL, {
+        headers: {
+          'Authorization': localStorage.token
+        },
         name: this.step_1.name,
         country: this.step_1.country,
         city: this.step_1.city,

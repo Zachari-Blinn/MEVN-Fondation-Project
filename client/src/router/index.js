@@ -6,10 +6,11 @@ import Login from '@/components/user/Login'
 import Register from '@/components/user/Register'
 import AdvertisementCreate from '@/components/advertisement/Create'
 import CandidacyCreate from '@/components/candidacy/Create'
+import store from '../store'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   routes: [{
       path: '/',
@@ -19,7 +20,10 @@ export default new Router({
     {
       path: '/company/create',
       name: 'Company_create',
-      component: CompanyCreate
+      component: CompanyCreate,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
@@ -34,12 +38,32 @@ export default new Router({
     {
       path: '/advertisement/create',
       name: 'Advertisement_create',
-      component: AdvertisementCreate
+      component: AdvertisementCreate,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/candidacy/create',
       name: 'Candidacy_create',
-      component: CandidacyCreate
+      component: CandidacyCreate,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login')
+  } else {
+    next()
+  }
+})
+
+export default router

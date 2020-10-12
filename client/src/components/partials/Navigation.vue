@@ -14,8 +14,6 @@
 
 <script>
 import store from "../../store";
-import axios from 'axios';
-const API_URL = 'http://localhost:8081/people';
 
 export default {
   store,
@@ -30,21 +28,6 @@ export default {
         this.$router.push("/login");
       });
     }
-  },
-  mounted () {
-    const access_token = localStorage.getItem('token')
-
-    axios.get(API_URL, {
-      headers: {
-        'Authorization': `Bearer ${access_token}`
-      }
-    })
-    .then((res) => {
-      console.log(res.data)
-    })
-    .catch((error) => {
-      console.error(error)
-    })
   }
 };
 </script>
