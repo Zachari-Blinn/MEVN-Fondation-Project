@@ -11,11 +11,11 @@ const PeopleSchema = new mongoose.Schema({
     },
     firstname: {
         type: String,
-        required: false
+        required: true
     },
     lastname: {
         type: String,
-        required: false
+        required: true
     },
     city: {
         type: String,
@@ -35,7 +35,8 @@ const PeopleSchema = new mongoose.Schema({
     },
     gender: {
         type: Boolean,
-        required: false
+        required: false,
+        default: null
     },
     cv_filename: {
         type: String,
@@ -47,7 +48,8 @@ const PeopleSchema = new mongoose.Schema({
     },
     isActive: {
         type: Boolean,
-        required: false
+        required: false,
+        default: true
     },
     candidacies: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -38,7 +38,7 @@
                         <!-- Country -->
                         <div class="row">
                           <div class="input-field col s12">
-                            <input id="country" type="text" class="validate" v-model="step_1.country" required>
+                            <input id="country" type="text" class="validate" v-model="step_1.country" required />
                             <label for="country">Country</label>
                             <span class="helper-text" data-error="wrong" data-success="right"></span>
                           </div>
@@ -155,92 +155,92 @@
 </template>
 
 <script>
-const axios = require('axios')
-const API_URL = 'http://localhost:8081/company'
+const axios = require("axios");
+const API_URL = "http://localhost:8081/company";
 
 export default {
-  data () {
+  data() {
     return {
-      title: 'Company',
+      title: "Company",
       current_step: 1,
       errors: [],
       step_1: {
         name: null,
         country: null,
         city: null,
-        address: null
+        address: null,
       },
       step_2: {
         description: null,
-        size: ''
+        size: "",
       },
       step_3: {
-        file: null
-      }
-    }
+        file: null,
+      },
+    };
   },
   computed: {
-    isComplete () {
-      return this.checkStep1()
-    }
+    isComplete() {
+      return this.checkStep1();
+    },
   },
   methods: {
     checkStep1: function (e) {
-      this.errors = []
+      this.errors = [];
 
       if (!this.step_1.name) {
-        this.errors.push('Name required')
+        this.errors.push("Name required");
       }
 
       if (!this.step_1.country) {
-        this.errors.push('Country required')
+        this.errors.push("Country required");
       }
     },
     goToStep: function (step) {
-      this.current_step = step
+      this.current_step = step;
     },
     confirmed: function () {
       // Post company data in database
       axios
-      .post(API_URL, {
-        headers: {
-          'Authorization': localStorage.token
-        },
-        name: this.step_1.name,
-        country: this.step_1.country,
-        city: this.step_1.city,
-        address: this.step_1.address,
-        description: this.step_2.description,
-        size: this.step_2.size
-      })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+        .post(API_URL, {
+          headers: {
+            Authorization: localStorage.token,
+          },
+          name: this.step_1.name,
+          country: this.step_1.country,
+          city: this.step_1.city,
+          address: this.step_1.address,
+          description: this.step_2.description,
+          size: this.step_2.size,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
       // Redirect to Home
-      this.$router.push({ name: 'Home' })
-    }
+      this.$router.push({ name: "Home" });
+    },
   },
   components: {
     step_1: {
-      template: '#step_1',
-      props: ['current_step', 'step_1']
+      template: "#step_1",
+      props: ["current_step", "step_1"],
     },
     step_2: {
-      template: '#step_2',
-      props: ['current_step', 'step_2']
+      template: "#step_2",
+      props: ["current_step", "step_2"],
     },
     step_3: {
-      template: '#step_3',
-      props: ['current_step', 'step_3']
+      template: "#step_3",
+      props: ["current_step", "step_3"],
     },
     step_4: {
-      template: '#step_4',
-      props: ['current_step', 'step_1', 'step_2', 'step_3']
-    }
-  }
-}
+      template: "#step_4",
+      props: ["current_step", "step_1", "step_2", "step_3"],
+    },
+  },
+};
 </script>

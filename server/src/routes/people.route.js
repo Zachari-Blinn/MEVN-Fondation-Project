@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const checkAuth = require('../middleware/check-auth');
+const {validateRegister, validateLogin} = require('../middleware/validation');
 
 const People = require('../models/people.model');
 
@@ -11,16 +12,7 @@ router.use(cors());
 
 // @desc Create people
 // @route POST /people
-router.post('/', async (req, res) => {
-    const { email, password } = req.body;
-
-    // if auth is null
-    if (!email || !password) {
-        return res.status(400).json({
-            error: "Email and password are required"
-        });
-    }
-
+router.post('/', validateRegister, async (req, res) => {
     try {
         // Check if user already existing
         await People.findOne({
@@ -50,7 +42,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', validateLogin, async (req, res) => {
 
     const { email, password } = req.body;
 
