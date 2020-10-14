@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-var cors = require('cors');
 
 const Advertisement = require('../models/advertisement.model');
-
-router.use(cors());
 
 // @desc Create advertisement
 // @route POST /advertisement
@@ -39,16 +36,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// @desc get all advertisement
-// @route GET /advertisement
-router.get('/', async (req, res) => {
-    await Advertisement.find(function (err, result) {
-        if (err) res.send(err);
-
-        res.json(result);
-    });
-});
-
 // @desc get specified advertisement
 // @route GET /advertisement/:id
 router.get('/:id', async (req, res) => {
@@ -58,6 +45,16 @@ router.get('/:id', async (req, res) => {
         res.json(result);
     })
 })
+
+// @desc get all advertisement
+// @route GET /advertisement
+router.get('/', async (req, res) => {
+    await Advertisement.find(function (err, result) {
+        if (err) res.send(err);
+
+        res.json(result);
+    });
+});
 
 // @desc remove specified advertisement
 // @route REMOVE /advertisement/:id

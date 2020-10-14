@@ -6,6 +6,11 @@ import Login from '@/components/user/Login'
 import Register from '@/components/user/Register'
 import AdvertisementCreate from '@/components/advertisement/Create'
 import CandidacyCreate from '@/components/candidacy/Create'
+import AdvertisementIndex from '@/components/advertisement/Index'
+import CompanyIndex from '@/components/company/Index'
+import AdvertisementShow from '@/components/advertisement/Show'
+
+
 import store from '../store'
 
 Vue.use(Router)
@@ -50,6 +55,22 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/advertisement/index',
+      name: 'Advertisement_index',
+      component: AdvertisementIndex
+    },
+    {
+      path: '/company/index',
+      name: 'Company_index',
+      component: CompanyIndex
+    },
+    {
+      path: '/advertisement/show/:id',
+      name: 'Advertisement_show',
+      component: AdvertisementShow,
+      props: true
     }
   ]
 })

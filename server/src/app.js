@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
 const connectDB = require('./config/config.db.js');
+const cors = require('cors');
 
 require('dotenv').config({
     path: './src/config/config.env'
@@ -15,6 +16,13 @@ connectDB();
 // Create express app
 const app = express();
 
+const corsOptions = {
+    origin: "*"
+};
+
+app.use(cors(corsOptions));
+
+
 // make app use dependencies
 app.use(morgan('dev'));
 
@@ -24,9 +32,7 @@ app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Function routes
 app.use('/advertisement', require('./routes/advertisement.route'));
