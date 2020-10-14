@@ -43,16 +43,6 @@ router.post('/', validateRegister, async (req, res) => {
 });
 
 router.post('/login', validateLogin, async (req, res) => {
-
-    const { email, password } = req.body;
-
-    // if auth is null
-    if (!email || !password) {
-        return res.status(400).json({
-            error: "Email and password are required"
-        });
-    }
-
     await People.findOne({
         email: req.body.email
     }, async function (err, people) {
@@ -105,7 +95,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// TEST FOR CHECK AUTH
+// TEST FOR CHECK AUTH (get user data with token)
 // @desc get all people
 // @route GET /people
 router.get('/', checkAuth, async (req, res) => {

@@ -11,21 +11,13 @@
         ></textarea>
       </div>
       <div>
-        <label for="cover_letter_filename">Cover letter</label>
-        <input
-          id="cover_letter_filename"
-          name="cover_letter_filename"
-          accept=".pdf, .doc, docx"
-          type="file"
-        />
-      </div>
-      <div>
         <label for="cv_filename">CV</label>
         <input
-          id="cv_filename"
-          name="cv_filename"
-          accept=".pdf, .doc, docx"
           type="file"
+          name="cv_filename"
+          id="cv_filename"
+          ref="cv_filename"
+          v-on:change="onChangeFileUpload()"
         />
       </div>
       <div>
@@ -42,39 +34,40 @@ import axios from "axios";
 const API_URL = "http://localhost:8081/candidacy";
 
 export default {
-  data () {
+  data() {
     return {
       errors: [],
       description: null,
       cover_letter_filename: null,
-      cv_filename: null
-    }
+      cv_filename: null,
+      message: null,
+    };
   },
   methods: {
-    complete: function () {
+    onChangeFileUpload() {
+      this.cv_filename = this.$refs.cv_filename.files[0];
+    },
+    complete: async function () {
       // Post company data in database
-      axios
-        .post(API_URL, {
-          headers: {
-            'Authorization': localStorage.token
-          },
-          name: this.name,
-          description: this.description,
-          cover_letter_filename: this.salary,
-          cv_filename: this.starting_date
-        })
-        .then(function (response) {
-          console.log(response)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+      const formData = new FormData();
+      formData.append("cv_filename", this.cv_filename, {
+        headers: {
+          Authorization: localStorage.token,
+        },
+      });
+
+      try {
+        await axios.post(API_URL, formData);
+      } catch (err) {
+        console.log(err);
+        this.message = "Something went wrong !";
+      }
 
       // Redirect to Home
-      this.$router.push({ name: "Home" })
-    }
-  }
-}
+      this.$router.push({ name: "Home" });
+    },
+  },
+};
 </script>
 
 <style>

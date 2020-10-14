@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
-var cors = require('cors');
+const {
+    upload
+} = require('../middleware/upload-file')
+const cors = require('cors');
 
 const Candidacy = require('../models/candidacy.model');
 const People = require('../models/people.model');
@@ -11,16 +14,9 @@ router.use(cors());
 
 // @desc Create candidacy
 // @route POST /candidacy/:peopleId/:advertisementId
-router.post('/', checkAuth, async (req, res) => {
+router.post('/', upload.single('cv_filename'), checkAuth, async (req, res) => {
     try {
-        //TODO get current user 
-        if(!req.userData){
-            return res.status(400).json({
-                error: "UserData is required"
-            });
-        }
-
-        // Get current user and set for company
+        req.body.cv_filename = req.file.path;
         req.body.people = req.userData.userId;
         req.body.advertisement = req.params.advertisementId;
 
@@ -29,6 +25,8 @@ router.post('/', checkAuth, async (req, res) => {
                 $push: {
                     candidacies: candidacy._id
                 }
+            }).then(response => {
+                res.status(200).json(response);
             })
         ));
 
@@ -36,7 +34,6 @@ router.post('/', checkAuth, async (req, res) => {
         console.log(error);
     }
 });
-200
 
 // @desc Change candidacy
 // @route PUT /candidacy/:id

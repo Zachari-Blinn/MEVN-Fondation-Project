@@ -18,6 +18,8 @@ const app = express();
 // make app use dependencies
 app.use(morgan('dev'));
 
+app.use('/uploads', express.static('uploads'));
+
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
