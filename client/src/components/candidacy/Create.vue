@@ -50,14 +50,14 @@ export default {
     complete: async function () {
       // Post company data in database
       const formData = new FormData();
-      formData.append("cv_filename", this.cv_filename, {
-        headers: {
-          Authorization: localStorage.token,
-        },
-      });
+      formData.append("cv_filename", this.cv_filename);
 
       try {
-        await axios.post(API_URL, formData);
+        await axios.post(API_URL, formData, {
+          headers: {
+            Authorization: localStorage.token,
+          },
+        });
       } catch (err) {
         console.log(err);
         this.message = "Something went wrong !";
