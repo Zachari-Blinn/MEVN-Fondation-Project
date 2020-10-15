@@ -1,5 +1,15 @@
 const Advertisement = require("../models/advertisement.model");
 
+// @desc get all advertisement
+// @route GET /advertisement
+exports.advertisement_get_all = async (req, res) => {
+    await Advertisement.find(function (err, result) {
+        if (err) res.send(err);
+
+        res.json(result);
+    });
+}
+
 // @desc Create advertisement
 // @route POST /advertisement
 exports.advertisement_create_advertisement = async (req, res) => {
