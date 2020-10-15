@@ -9,6 +9,8 @@ import CandidacyCreate from '@/components/candidacy/Create'
 import AdvertisementIndex from '@/components/advertisement/Index'
 import CompanyIndex from '@/components/company/Index'
 import AdvertisementShow from '@/components/advertisement/Show'
+import CandidacyShow from '@/components/candidacy/Show'
+
 
 
 import store from '../store'
@@ -70,6 +72,12 @@ let router = new Router({
       path: '/advertisement/show/:id',
       name: 'Advertisement_show',
       component: AdvertisementShow,
+      props: true
+    },
+    {
+      path: '/candidacy/show/:id',
+      name: 'Candidacy_show',
+      component: CandidacyShow,
       props: true
     }
   ]
