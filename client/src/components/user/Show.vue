@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Ads show {{ id }}</h1>
+    <h1>People show {{ id }}</h1>
     {{ people }}
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Ads show {{ id }}</h1>
+    <h1>Advertisement show {{ id }}</h1>
     {{ advertisement }}
   </div>
 </template>

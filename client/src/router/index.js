@@ -22,6 +22,7 @@ import CompanyShow from '@/components/company/Show'
 // People routes imports
 import Login from '@/components/user/Login'
 import Register from '@/components/user/Register'
+import PeopleShow from '@/components/user/Show'
 
 Vue.use(Router)
 
@@ -92,6 +93,12 @@ let router = new Router({
       path: '/company/show/:id',
       name: 'Company_show',
       component: CompanyShow,
+      props: true
+    },
+    {
+      path: '/people/show/:id',
+      name: 'People_show',
+      component: PeopleShow,
       props: true
     }
   ]
