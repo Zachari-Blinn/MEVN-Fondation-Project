@@ -16,13 +16,12 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get("http://localhost:8081/advertisement/", {
-          params: {
-              advertisementId: this.id
-          }
-      })
-      .then((response) => (this.advertisement = response.data));
+    axios({
+      url: `http://localhost:8081/advertisement/${this.id}`,
+      method: 'get'
+    })
+    .then((response) => (this.advertisement = response.data))
+    .catch((response) => (this.advertisement = response.data));
   },
 };
 </script>

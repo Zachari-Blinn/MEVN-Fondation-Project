@@ -22,7 +22,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
 // make app use dependencies
 app.use(morgan('dev'));
 
