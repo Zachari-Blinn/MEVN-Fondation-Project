@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Candidacy show {{ id }}</h1>
-    {{ candidacy }}
+    <h1>Ads show {{ id }}</h1>
+    {{ people }}
   </div>
 </template>
 
@@ -12,15 +12,15 @@ export default {
   props: ["id"],
   data() {
     return {
-      candidacy: null,
+      people: null,
     };
   },
   mounted() {
     axios({
-      url: `http://localhost:8081/candidacy/${this.id}`,
+      url: `http://localhost:8081/people/${this.id}`,
       method: "get",
     })
-      .then((response) => (this.candidacy = response.data))
+      .then((response) => (this.people = response.data))
       .catch(function (error) {
         console.log(error);
       });

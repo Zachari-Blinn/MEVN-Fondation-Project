@@ -1,19 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+
+// Default routes imports
 import Home from '@/components/Home'
-import CompanyCreate from '@/components/company/Create'
-import Login from '@/components/user/Login'
-import Register from '@/components/user/Register'
+
+// Advertisement routes imports
 import AdvertisementCreate from '@/components/advertisement/Create'
-import CandidacyCreate from '@/components/candidacy/Create'
 import AdvertisementIndex from '@/components/advertisement/Index'
-import CompanyIndex from '@/components/company/Index'
 import AdvertisementShow from '@/components/advertisement/Show'
+
+// Candidacy routes imports
+import CandidacyCreate from '@/components/candidacy/Create'
 import CandidacyShow from '@/components/candidacy/Show'
 
+// Company routes imports 
+import CompanyCreate from '@/components/company/Create'
+import CompanyIndex from '@/components/company/Index'
+import CompanyShow from '@/components/company/Show'
 
-
-import store from '../store'
+// People routes imports
+import Login from '@/components/user/Login'
+import Register from '@/components/user/Register'
 
 Vue.use(Router)
 
@@ -78,6 +86,12 @@ let router = new Router({
       path: '/candidacy/show/:id',
       name: 'Candidacy_show',
       component: CandidacyShow,
+      props: true
+    },
+    {
+      path: '/company/show/:id',
+      name: 'Company_show',
+      component: CompanyShow,
       props: true
     }
   ]

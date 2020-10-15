@@ -15,7 +15,6 @@ exports.company_get_all = async (req, res) => {
 // @route POST /company
 exports.company_create_company = async (req, res) => {
     try {
-        // Verify data is not null
         if (!req.userData || !req.body.name || !req.body.country) {
             return res.status(400).json({
                 error: "UserData is required"
@@ -25,7 +24,6 @@ exports.company_create_company = async (req, res) => {
         // Get current user and set for company
         req.body.employee = req.userData.userId;
 
-        // Send data to database
         await Company.create(req.body).then(company => (
             People.findByIdAndUpdate(req.userData.userId, {
                 $push: {
