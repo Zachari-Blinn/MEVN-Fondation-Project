@@ -30,7 +30,7 @@ exports.advertisement_get_advertisement = async (req, res) => {
     await Advertisement.findById(req.params.advertisementId, function (err, result) {
         if (err) res.send(err);
 
-        res.json(result);
+        res.status(200).json(result);
     })
 }
 

@@ -1,7 +1,15 @@
 <template>
   <div>
     <h1>Advertisement show {{ id }}</h1>
-    {{ advertisement }}
+    {{ advertisement.name }}
+    {{ advertisement.description }}
+    {{ advertisement.salary }}
+    {{ advertisement.starting_date }}
+    {{ advertisement.ending_date }}
+    {{ advertisement.contract_type }}
+    {{ advertisement.education }}
+    {{ advertisement.remote }}
+    {{ advertisement.language }}
   </div>
 </template>
 
@@ -21,12 +29,8 @@ export default {
       method: "get",
     })
       .then((response) => (this.advertisement = response.data))
-      .catch(function (error) {
-        console.log(error);
-      });
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

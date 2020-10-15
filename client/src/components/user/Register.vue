@@ -115,7 +115,13 @@
       <template id="step_4" v-if="current_step == 4">
         <div>
           <label for="email">Email</label>
-          <input name="email" id="email" type="text" v-model="step_4.email" required />
+          <input
+            name="email"
+            id="email"
+            type="text"
+            v-model="step_4.email"
+            required
+          />
           <span v-if="msg.email">{{ msg.email }}</span>
         </div>
         <div>
@@ -131,7 +137,17 @@
         </div>
         <!-- Button -->
         <div class="row">
-          <button :disabled="!!msg['email'] || !!msg['password'] || step_4.email == null || step_4.password == null" class="btn right" type="button" @click.prevent="confirmed()">
+          <button
+            :disabled="
+              !!msg['email'] ||
+              !!msg['password'] ||
+              step_4.email == null ||
+              step_4.password == null
+            "
+            class="btn right"
+            type="button"
+            @click.prevent="confirmed()"
+          >
             Confirm
           </button>
           <button class="btn left" type="button" @click.prevent="goToStep(3)">

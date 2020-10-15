@@ -1,13 +1,12 @@
 <template>
   <div>
     <h1>Index</h1>
-    
+
     <ul id="example-1">
       <li v-for="company in companies" :key="company._id">
         {{ company.name }}
       </li>
     </ul>
-
   </div>
 </template>
 

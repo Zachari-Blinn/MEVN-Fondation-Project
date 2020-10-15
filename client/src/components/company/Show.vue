@@ -21,9 +21,6 @@ export default {
       method: "get",
     })
       .then((response) => (this.company = response.data))
-      .catch(function (error) {
-        console.log(error);
-      });
   },
 };
 </script>

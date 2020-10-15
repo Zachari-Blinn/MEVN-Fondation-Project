@@ -27,22 +27,22 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       email: null,
-      password: null
-    }
+      password: null,
+    };
   },
   methods: {
     login: function () {
-      let email = this.email
-      let password = this.password
+      let email = this.email;
+      let password = this.password;
 
       this.$store
         .dispatch("login", { email, password })
         .then(() => this.$router.push({ name: "Home" }))
-        .catch(err => console.log(err))
-    }
-  }
-}
+        .catch((err) => console.log(err));
+    },
+  },
+};
 </script>
