@@ -52,17 +52,19 @@ let router = new Router({
       component: Register
     },
     {
-      path: '/advertisement/create',
+      path: '/advertisement/create/:id',
       name: 'Advertisement_create',
       component: AdvertisementCreate,
+      props: true,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/candidacy/create',
+      path: '/candidacy/create/:id',
       name: 'Candidacy_create',
       component: CandidacyCreate,
+      props: true,
       meta: {
         requiresAuth: true
       }

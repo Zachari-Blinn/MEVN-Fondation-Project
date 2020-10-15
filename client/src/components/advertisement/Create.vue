@@ -101,6 +101,7 @@ import axios from 'axios'
 const API_URL = 'http://localhost:8081/advertisement'
 
 export default {
+  props: ["id"],
   data () {
     return {
       errors: [],
@@ -112,7 +113,8 @@ export default {
       contract_type: null,
       education: null,
       remote: null,
-      language: null
+      language: null,
+      company: this.id
     }
   },
   methods: {
@@ -128,7 +130,8 @@ export default {
           contract_type: this.contract_type,
           education: this.education,
           remote: this.remote,
-          language: this.language
+          language: this.language,
+          company: this.id
         })
         .then(function (response) {
           console.log(response)

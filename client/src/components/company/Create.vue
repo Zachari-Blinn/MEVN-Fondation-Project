@@ -212,6 +212,7 @@ export default {
           address: this.step_1.address,
           description: this.step_2.description,
           size: this.step_2.size,
+
         })
         .then(function (response) {
           console.log(response);

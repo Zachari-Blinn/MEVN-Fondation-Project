@@ -1,15 +1,20 @@
 <template>
   <div>
-    <h1>Advertisement show {{ id }}</h1>
-    {{ advertisement.name }}
-    {{ advertisement.description }}
-    {{ advertisement.salary }}
-    {{ advertisement.starting_date }}
-    {{ advertisement.ending_date }}
-    {{ advertisement.contract_type }}
-    {{ advertisement.education }}
-    {{ advertisement.remote }}
-    {{ advertisement.language }}
+    <h1>Advertisement show {{ advertisement.name }}</h1>
+    <ul>
+      <li>{{ advertisement.description }}</li>
+      <li>{{ advertisement.salary }}</li>
+      <li>{{ advertisement.starting_date }}</li>
+      <li>{{ advertisement.ending_date }}</li>
+      <li>{{ advertisement.contract_type }}</li>
+      <li>{{ advertisement.education }}</li>
+      <li>{{ advertisement.remote }}</li>
+      <li>{{ advertisement.language }}</li>
+    </ul>
+    
+    <!-- Candidater -->
+    <a :href="url + advertisement.company">Send Candidacy</a>
+
   </div>
 </template>
 
@@ -21,6 +26,7 @@ export default {
   data() {
     return {
       advertisement: null,
+      url: "http://localhost:8080/candidacy/create/"
     };
   },
   mounted() {

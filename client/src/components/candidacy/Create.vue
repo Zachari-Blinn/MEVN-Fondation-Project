@@ -34,6 +34,7 @@ import axios from "axios";
 const API_URL = "http://localhost:8081/candidacy";
 
 export default {
+  props: ["id"],
   data() {
     return {
       errors: [],
@@ -51,6 +52,8 @@ export default {
       // Post company data in database
       const formData = new FormData();
       formData.append("cv_filename", this.cv_filename);
+      formData.append('company', this.id);
+      formData.append('description', this.description);
 
       try {
         await axios.post(API_URL, formData, {

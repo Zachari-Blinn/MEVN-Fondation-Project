@@ -14,6 +14,7 @@ exports.advertisement_get_all = async (req, res) => {
 // @route POST /advertisement
 exports.advertisement_create_advertisement = async (req, res) => {
     try {
+        //req.body.company = "5f8875623ea27c3c85f79b84";
         await Advertisement.create(req.body, function (err, result) {
             if (err) res.send(err);
 

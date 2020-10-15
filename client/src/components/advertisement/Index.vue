@@ -5,7 +5,7 @@
     <ul id="example-1">
       <li v-for="advertisement in advertisements" :key="advertisement._id">
         {{ advertisement.name }}
-        <a :href="advertisement_url + advertisement._id">Seen Ad</a>
+        <a :href="advertisement_url + advertisement._id">Seen</a>
       </li>
     </ul>
 

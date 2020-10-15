@@ -4,7 +4,8 @@
 
     <ul id="example-1">
       <li v-for="company in companies" :key="company._id">
-        {{ company.name }}
+        {{ company.name }} |
+        <a :href="company_url + company._id">Seen Company</a>
       </li>
     </ul>
   </div>
@@ -17,6 +18,7 @@ export default {
   data() {
     return {
       companies: null,
+      company_url: "http://localhost:8080/company/show/"
     };
   },
   mounted() {

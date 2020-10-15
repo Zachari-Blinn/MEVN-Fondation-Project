@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>Company show {{ id }}</h1>
-    {{ company }}
+    <h1>{{ company.name }}</h1>
+    <p>{{ company.description }}</p>
+    <a :href="url + company._id">Create Ads</a>
+    <!-- TODO afficher les annonces de l'entreprise -->
   </div>
 </template>
 
@@ -13,6 +15,7 @@ export default {
   data() {
     return {
       company: null,
+      url: "http://localhost:8080/advertisement/create/"
     };
   },
   mounted() {
