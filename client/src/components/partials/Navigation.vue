@@ -7,7 +7,7 @@
       <router-link to="/company/index">Company index</router-link>
       <router-link to="/advertisement/index">Advertisement index</router-link>
       <span v-if="isLoggedIn"> |
-        <a :href="people_url_show"></a>| 
+        <a :href="people_url_show + user._id">User page</a>| 
         <a @click="logout">Logout</a>
       </span>
       <span v-else> | <router-link to="/login">Login</router-link></span>
@@ -24,7 +24,8 @@ export default {
   store,
     data() {
     return {
-      people_url_show: "http://localhost:8080/user/show/"
+      people_url_show: "http://localhost:8080/user/show/",
+      user: JSON.parse(localStorage.getItem('people'))
     };
   },
   computed: {
