@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     status: '',
     token: localStorage.getItem('token') || '',
-    people: {}
+    people: localStorage.getItem('people') || ''
   },
   mutations: {
     auth_request(state) {
@@ -43,9 +43,12 @@ export default new Vuex.Store({
         })
           .then(resp => {
             const token = resp.data.token
-            const people = resp.data.people
+            const people = JSON.stringify(resp.data.people)
+
+            console.log(resp.data.people)
 
             localStorage.setItem('token', token)
+            localStorage.setItem('people', people)
 
             axios.defaults.headers.common['Authorization'] = token
 

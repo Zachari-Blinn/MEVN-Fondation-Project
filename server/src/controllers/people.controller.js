@@ -103,6 +103,8 @@ exports.people_login_people = async (req, res) => {
 
                 res.status(200).send({
                     auth: true,
+                    userId: people._id,
+                    people: people,
                     message: "Auth successful",
                     token: token,
                 });

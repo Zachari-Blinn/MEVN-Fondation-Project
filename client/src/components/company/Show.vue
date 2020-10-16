@@ -7,6 +7,9 @@
     <h2>Ads:</h2>
     <li v-for="advertisement in advertisements" :key="advertisement._id">
       {{ advertisement.name }}
+      <span v-if="isLoggedIn">
+        <a :href="candidacy_url_create + advertisement._id">Apply</a>
+      </span>
     </li>
   </div>
 </template>
@@ -21,22 +24,19 @@ export default {
       company: null,
       advertisements: null,
       url: "http://localhost:8080/advertisement/create/",
+      candidacy_url_create: "http://localhost:8080/candidacy/create/",
     };
   },
   mounted() {
     axios({
       url: `http://localhost:8081/company/${this.id}`,
       method: "get",
-    }).then((response) => (
-      this.company = response.data
-    ));
+    }).then((response) => (this.company = response.data));
 
     axios({
       url: `http://localhost:8081/advertisement/company/${this.id}`,
-      method: 'get',
-    }).then((response) => (
-      this.advertisements = response.data
-    ));
+      method: "get",
+    }).then((response) => (this.advertisements = response.data));
   },
 };
 </script>
