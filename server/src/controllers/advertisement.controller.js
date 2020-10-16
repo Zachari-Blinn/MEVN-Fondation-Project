@@ -1,3 +1,6 @@
+const {
+    response
+} = require("express");
 const Advertisement = require("../models/advertisement.model");
 const Company = require('../models/company.model');
 
@@ -73,9 +76,54 @@ exports.advertisement_update_advertisement = async (req, res) => {
 // @route GET /advertisement/:companyId
 exports.advertisement_get_advertisement_by_company = async (req, res) => {
     await Advertisement.find({
-        company: req.params.companyId
-    })
-    .then(response => {
-        res.status(200).json(response);
-    })
+            company: req.params.companyId
+        })
+        .then(response => {
+            res.status(200).json(response);
+        })
+}
+
+exports.advertisement_search_advertisement = async (req, res) => {
+    let queryCondition = {};
+
+    if (req.body.name) {
+        queryCondition.name = {
+            $regex: req.body.name,
+            $options: 'i'
+        };
+    }
+
+    if (req.body.salary) {
+        queryCondition.salary = req.body.salary;
+    }
+
+    if (req.body.starting_date) {
+        queryCondition.starting_date = req.body.starting_date;
+    }
+
+    if (req.body.ending_date) {
+        queryCondition.ending_date = req.body.ending_date;
+    }
+
+    if (req.body.contract_type) {
+        queryCondition.contract_type = req.body.contract_type;
+    }
+
+    if (req.body.education) {
+        queryCondition.education = req.body.education;
+    }
+
+    if (req.body.remote) {
+        queryCondition.remote = req.body.remote;
+    }
+
+    if (req.body.language) {
+        queryCondition.language = req.body.language;
+    }
+
+    await Advertisement
+        .find(queryCondition)
+        .then(response => {
+            res.status(200).json(response);
+        });
 }

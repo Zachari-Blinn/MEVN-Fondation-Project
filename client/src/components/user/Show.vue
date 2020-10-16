@@ -2,6 +2,10 @@
   <div>
     <h1>People show {{ id }}</h1>
     {{ people }}
+
+    <!-- TODO IF currentuserpage THEN allow to edit candidacy -->
+    <!-- user candidacy | edition du profile -->
+
   </div>
 </template>
 

@@ -12,6 +12,7 @@ import AdvertisementShow from '@/components/advertisement/Show'
 
 // Candidacy routes imports
 import CandidacyCreate from '@/components/candidacy/Create'
+import CandidacyIndex from '@/components/candidacy/Index'
 import CandidacyShow from '@/components/candidacy/Show'
 
 // Company routes imports 
@@ -103,6 +104,11 @@ let router = new Router({
       name: 'People_show',
       component: PeopleShow,
       props: true
+    },
+    {
+      path: '/candidacy/index',
+      name: 'Candidacy_index',
+      component: CandidacyIndex
     }
   ]
 })

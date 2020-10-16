@@ -12,5 +12,6 @@ router.put('/:advertisementId', AdvertisementController.advertisement_update_adv
 router.delete('/:advertisementId', AdvertisementController.advertisement_delete_advertisement);
 
 router.get('/company/:companyId', AdvertisementController.advertisement_get_advertisement_by_company);
+router.post('/search', AdvertisementController.advertisement_search_advertisement);
 
 module.exports = router;
