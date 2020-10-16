@@ -3,7 +3,7 @@
     <h1>Candidacy</h1>
     <form action="">
       <div>
-        <label for="description">Description</label>
+        <label for="description">Cover letter</label>
         <textarea
           name="description"
           id="description"
@@ -42,6 +42,7 @@ export default {
       cover_letter_filename: null,
       cv_filename: null,
       message: null,
+      company: this.id
     };
   },
   methods: {

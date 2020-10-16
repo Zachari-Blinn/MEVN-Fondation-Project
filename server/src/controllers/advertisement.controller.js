@@ -1,4 +1,5 @@
 const Advertisement = require("../models/advertisement.model");
+const Company = require('../models/company.model');
 
 // @desc get all advertisement
 // @route GET /advertisement
@@ -15,11 +16,15 @@ exports.advertisement_get_all = async (req, res) => {
 exports.advertisement_create_advertisement = async (req, res) => {
     try {
         //req.body.company = "5f8875623ea27c3c85f79b84";
-        await Advertisement.create(req.body, function (err, result) {
-            if (err) res.send(err);
-
-            res.json(result);
-        });
+        await Advertisement.create(req.body).then(advertisement => (
+            Company.findByIdAndUpdate(advertisement.company._id, {
+                $push: {
+                    advertisements: advertisement._id
+                }
+            }).then(response => {
+                res.status(200).json(response);
+            })
+        ));
     } catch (error) {
         console.log(error);
     }
@@ -62,4 +67,15 @@ exports.advertisement_update_advertisement = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+// @desc get all advertisement by company
+// @route GET /advertisement/:companyId
+exports.advertisement_get_advertisement_by_company = async (req, res) => {
+    await Advertisement.find({
+        company: req.params.companyId
+    })
+    .then(response => {
+        res.status(200).json(response);
+    })
 }

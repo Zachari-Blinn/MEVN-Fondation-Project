@@ -40,7 +40,10 @@ export default {
 
       this.$store
         .dispatch("login", { email, password })
-        .then(() => this.$router.push({ name: "Home" }))
+        .then((response) => (
+          this.$router.push({ name: "Home" }),
+          console.log(response)
+        ))
         .catch((err) => console.log(err));
     },
   },

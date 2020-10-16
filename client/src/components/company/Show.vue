@@ -4,6 +4,10 @@
     <p>{{ company.description }}</p>
     <a :href="url + company._id">Create Ads</a>
     <!-- TODO afficher les annonces de l'entreprise -->
+    <h2>Ads:</h2>
+    <li v-for="advertisement in advertisements" :key="advertisement._id">
+      {{ advertisement.name }}
+    </li>
   </div>
 </template>
 
@@ -15,15 +19,24 @@ export default {
   data() {
     return {
       company: null,
-      url: "http://localhost:8080/advertisement/create/"
+      advertisements: null,
+      url: "http://localhost:8080/advertisement/create/",
     };
   },
   mounted() {
     axios({
       url: `http://localhost:8081/company/${this.id}`,
       method: "get",
-    })
-      .then((response) => (this.company = response.data))
+    }).then((response) => (
+      this.company = response.data
+    ));
+
+    axios({
+      url: `http://localhost:8081/advertisement/company/${this.id}`,
+      method: 'get',
+    }).then((response) => (
+      this.advertisements = response.data
+    ));
   },
 };
 </script>

@@ -11,30 +11,37 @@
       <li>{{ advertisement.remote }}</li>
       <li>{{ advertisement.language }}</li>
     </ul>
-    
-    <!-- Candidater -->
-    <a :href="url + advertisement.company">Send Candidacy</a>
 
+    <!-- Apply (only if connected) -->
+    <span v-if="isLoggedIn">
+      <a :href="candidacy_url_create + advertisement._id">Apply</a>
+    </span>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import store from "../../store";
 
 export default {
   props: ["id"],
   data() {
     return {
+      store,
       advertisement: null,
-      url: "http://localhost:8080/candidacy/create/"
+      candidacy_url_create: "http://localhost:8080/candidacy/create/",
     };
+  },
+  computed: {
+    isLoggedIn: function () {
+      return this.$store.getters.isLoggedIn;
+    },
   },
   mounted() {
     axios({
       url: `http://localhost:8081/advertisement/${this.id}`,
       method: "get",
-    })
-      .then((response) => (this.advertisement = response.data))
+    }).then((response) => (this.advertisement = response.data));
   },
 };
 </script>

@@ -274,6 +274,7 @@ export default {
           password: this.step_4.password,
         })
         .then(function (response) {
+          this.$router.push({ name: "Home" });
           console.log(response);
         })
         .catch(function (error) {

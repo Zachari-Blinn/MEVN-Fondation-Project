@@ -32,11 +32,13 @@ exports.company_create_company = async (req, res) => {
 // @desc get specified company
 // @route GET /company/:id
 exports.company_get_company = async (req, res) => {
-    await Company.findById(req.params.id, function (err, result) {
-        if (err) res.send(err);
+    await Company.findById(req.params.id)
+        .populate('advertisement')
+        .exec(function (err, company) {
+            if (err) res.send(err);
 
-        res.json(result);
-    })
+            res.json(company);
+        });
 }
 
 // @desc remove specified company

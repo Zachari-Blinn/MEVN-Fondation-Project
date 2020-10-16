@@ -5,7 +5,8 @@
     <ul id="example-1">
       <li v-for="advertisement in advertisements" :key="advertisement._id">
         {{ advertisement.name }}
-        <a :href="advertisement_url + advertisement._id">Seen</a>
+        <a :href="advertisement_url_show + advertisement._id">Seen</a>
+        <a :href="candidacy_url_create + advertisement._id">Apply</a>
       </li>
     </ul>
 
@@ -19,7 +20,8 @@ export default {
   data() {
     return {
       advertisements: null,
-      advertisement_url: "http://localhost:8080/advertisement/show/"
+      advertisement_url_show: "http://localhost:8080/advertisement/show/",
+      candidacy_url_create: "http://localhost:8080/candidacy/create/"
     };
   },
   mounted() {
