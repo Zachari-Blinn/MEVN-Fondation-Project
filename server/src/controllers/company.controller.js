@@ -44,7 +44,7 @@ exports.company_get_company = async (req, res) => {
 // @desc remove specified company
 // @route REMOVE /company/:id
 exports.company_delete_company = async (req, res) => {
-    await Company.deleteOne(req.params.id, function (err, result) {
+    await Company.deleteOne({ '_id': req.params.id}, function (err, result) {
         if (err) res.send(err);
 
         res.json(result);

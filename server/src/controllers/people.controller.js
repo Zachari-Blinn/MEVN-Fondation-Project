@@ -59,7 +59,6 @@ exports.people_get_people = async (req, res) => {
 // @desc remove specified people
 // @route REMOVE /people/:id
 exports.people_delete_people = async (req, res) => {
-    console.log("test");
     await People.deleteOne({ '_id': req.params.id}, function (err, result) {
         if (err) res.send(err);
 
