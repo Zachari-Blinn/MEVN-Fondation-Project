@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>{{ company.name }}</h1>
     <p>{{ company.description }}</p>
     <a :href="url + company._id">Create Ads</a>
@@ -16,6 +18,7 @@
 
 <script>
 import axios from "axios";
+import Navigation from "../partials/Navigation";
 
 export default {
   props: ["id"],
@@ -37,6 +40,9 @@ export default {
       url: `http://localhost:8081/advertisement/company/${this.id}`,
       method: "get",
     }).then((response) => (this.advertisements = response.data));
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

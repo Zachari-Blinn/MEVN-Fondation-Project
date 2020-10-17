@@ -1,16 +1,18 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>People show {{ id }}</h1>
     {{ people }}
 
     <!-- TODO IF currentuserpage THEN allow to edit candidacy -->
     <!-- user candidacy | edition du profile -->
-
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Navigation from "../partials/Navigation";
 
 export default {
   props: ["id"],
@@ -28,6 +30,9 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

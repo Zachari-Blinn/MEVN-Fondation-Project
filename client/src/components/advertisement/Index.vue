@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Index</h1>
 
     <section>
@@ -10,11 +12,15 @@
         </div>
         <div>
           <label for="salary">Salary</label>
-          <input type="number" name="salary" id="salary" v-model="salary">
+          <input type="number" name="salary" id="salary" v-model="salary" />
         </div>
         <div>
           <label for="contract_type">Contract Type</label>
-          <select name="contract_type" id="contract_type" v-model="contract_type">
+          <select
+            name="contract_type"
+            id="contract_type"
+            v-model="contract_type"
+          >
             <option value="">All</option>
             <option value="CDI">CDI</option>
             <option value="CDD">CDD</option>
@@ -59,7 +65,9 @@
           </select>
         </div>
         <div>
-          <button class="btn" type="submit" @click.prevent="search()">Search</button>
+          <button class="btn" type="submit" @click.prevent="search()">
+            Search
+          </button>
         </div>
       </form>
     </section>
@@ -76,6 +84,7 @@
 
 <script>
 import axios from "axios";
+import Navigation from "../partials/Navigation";
 
 export default {
   data() {
@@ -88,11 +97,11 @@ export default {
       contract_type: null,
       education: null,
       remote: null,
-      language: null
+      language: null,
     };
   },
   mounted() {
-    this.search()
+    this.search();
   },
   methods: {
     search: function () {
@@ -103,10 +112,13 @@ export default {
           contract_type: this.contract_type,
           education: this.education,
           remote: this.remote,
-          language: this.language
+          language: this.language,
         })
         .then((response) => (this.advertisements = response.data));
     },
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

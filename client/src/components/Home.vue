@@ -1,15 +1,22 @@
 <template>
   <div id="app">
-    <h1>{{page_name}} page</h1>
+    <Navigation />
+
+    <h1>{{ page_name }} page</h1>
   </div>
 </template>
 
 <script>
+import Navigation from "./partials/Navigation";
+
 export default {
-  data () {
+  data() {
     return {
-      page_name: 'Home controller',
-    }
-  }
-}
+      page_name: "Home controller",
+    };
+  },
+  components: {
+    Navigation,
+  },
+};
 </script>

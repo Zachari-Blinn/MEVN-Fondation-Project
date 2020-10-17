@@ -6,11 +6,14 @@
 </template>
 
 <script>
-export default {
+import Navigation from "../partials/Navigation";
 
-}
+export default {
+  components: {
+    Navigation,
+  },
+};
 </script>
 
 <style>
-
 </style>

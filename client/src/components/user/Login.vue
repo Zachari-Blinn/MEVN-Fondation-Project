@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navigation />
     <h1>Login</h1>
     <form>
       <div>
@@ -26,6 +27,8 @@
 </template>
 
 <script>
+import Navigation from "../partials/Navigation";
+
 export default {
   data() {
     return {
@@ -40,12 +43,16 @@ export default {
 
       this.$store
         .dispatch("login", { email, password })
-        .then((response) => (
-          this.$router.push({ name: "Home" }),
-          console.log(response)
-        ))
+        .then(
+          (response) => (
+            this.$router.push({ name: "Home" }), console.log(response)
+          )
+        )
         .catch((err) => console.log(err));
     },
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

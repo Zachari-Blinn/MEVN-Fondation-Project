@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Navigation />
       <div class="container">
         <div class="row">
           <div class="col s12 m12 l9 xl9">
@@ -152,11 +154,13 @@
           </div>
         </div>
       </div>
+</div>
 </template>
 
 <script>
 const axios = require("axios");
 const API_URL = "http://localhost:8081/company";
+import Navigation from "../partials/Navigation";
 
 export default {
   data() {
@@ -212,7 +216,6 @@ export default {
           address: this.step_1.address,
           description: this.step_2.description,
           size: this.step_2.size,
-
         })
         .then(function (response) {
           console.log(response);
@@ -226,6 +229,7 @@ export default {
     },
   },
   components: {
+    Navigation,
     step_1: {
       template: "#step_1",
       props: ["current_step", "step_1"],

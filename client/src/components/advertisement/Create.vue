@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Advertisement</h1>
     <form>
       <div>
@@ -97,12 +99,13 @@
 </template>
 
 <script>
-import axios from 'axios'
-const API_URL = 'http://localhost:8081/advertisement'
+import axios from "axios";
+const API_URL = "http://localhost:8081/advertisement";
+import Navigation from "../partials/Navigation";
 
 export default {
   props: ["id"],
-  data () {
+  data() {
     return {
       errors: [],
       name: null,
@@ -114,8 +117,8 @@ export default {
       education: null,
       remote: null,
       language: null,
-      company: this.id
-    }
+      company: this.id,
+    };
   },
   methods: {
     complete: function () {
@@ -131,20 +134,23 @@ export default {
           education: this.education,
           remote: this.remote,
           language: this.language,
-          company: this.id
+          company: this.id,
         })
         .then(function (response) {
-          console.log(response)
+          console.log(response);
         })
         .catch(function (error) {
-          console.log(error)
-        })
+          console.log(error);
+        });
 
       // Redirect to Home
-      this.$router.push({ name: 'Home' })
-    }
-  }
-}
+      this.$router.push({ name: "Home" });
+    },
+  },
+  components: {
+    Navigation,
+  },
+};
 </script>
 
 <style></style>

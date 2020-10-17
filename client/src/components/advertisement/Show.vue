@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Advertisement show {{ advertisement.name }}</h1>
     <ul>
       <li>{{ advertisement.description }}</li>
@@ -22,6 +24,7 @@
 <script>
 import axios from "axios";
 import store from "../../store";
+import Navigation from "../partials/Navigation";
 
 export default {
   props: ["id"],
@@ -42,6 +45,9 @@ export default {
       url: `http://localhost:8081/advertisement/${this.id}`,
       method: "get",
     }).then((response) => (this.advertisement = response.data));
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

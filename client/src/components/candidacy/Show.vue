@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Candidacy show {{ id }}</h1>
     {{ candidacy }}
   </div>
@@ -7,6 +9,7 @@
 
 <script>
 import axios from "axios";
+import Navigation from "../partials/Navigation";
 
 export default {
   props: ["id"],
@@ -19,8 +22,10 @@ export default {
     axios({
       url: `http://localhost:8081/candidacy/${this.id}`,
       method: "get",
-    })
-      .then((response) => (this.candidacy = response.data))
+    }).then((response) => (this.candidacy = response.data));
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Register</h1>
 
     <form action="" method="post">
@@ -162,6 +164,7 @@
 <script>
 const axios = require("axios");
 const API_URL = "http://localhost:8081/people";
+import Navigation from "../partials/Navigation";
 
 export default {
   data() {
@@ -281,6 +284,9 @@ export default {
           console.log(error);
         });
     },
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

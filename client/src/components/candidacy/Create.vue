@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Candidacy</h1>
     <form action="">
       <div>
@@ -32,6 +34,7 @@
 <script>
 import axios from "axios";
 const API_URL = "http://localhost:8081/candidacy";
+import Navigation from "../partials/Navigation";
 
 export default {
   props: ["id"],
@@ -42,7 +45,7 @@ export default {
       cover_letter_filename: null,
       cv_filename: null,
       message: null,
-      company: this.id
+      company: this.id,
     };
   },
   methods: {
@@ -53,8 +56,8 @@ export default {
       // Post company data in database
       const formData = new FormData();
       formData.append("cv_filename", this.cv_filename);
-      formData.append('company', this.id);
-      formData.append('description', this.description);
+      formData.append("company", this.id);
+      formData.append("description", this.description);
 
       try {
         await axios.post(API_URL, formData, {
@@ -70,6 +73,9 @@ export default {
       // Redirect to Home
       this.$router.push({ name: "Home" });
     },
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Index</h1>
 
     <ul id="example-1">
@@ -13,18 +15,22 @@
 
 <script>
 import axios from "axios";
+import Navigation from "../partials/Navigation";
 
 export default {
   data() {
     return {
       companies: null,
-      company_url: "http://localhost:8080/company/show/"
+      company_url: "http://localhost:8080/company/show/",
     };
   },
   mounted() {
     axios
       .get("http://localhost:8081/company")
       .then((response) => (this.companies = response.data));
+  },
+  components: {
+    Navigation,
   },
 };
 </script>

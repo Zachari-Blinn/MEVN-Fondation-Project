@@ -26,6 +26,12 @@ import Register from '@/components/user/Register'
 import PeopleShow from '@/components/user/Show'
 //import Dashboard from '@/components/user/Dashboard'
 
+// Admin routes imports
+import AdminAdvertisement from '@/components/advertisement/Admin'
+import AdminCandidacy from '@/components/candidacy/Admin'
+import AdminCompany from '@/components/company/Admin'
+import AdminPeople from '@/components/user/Admin'
+
 Vue.use(Router)
 
 let router = new Router({
@@ -109,6 +115,26 @@ let router = new Router({
       path: '/candidacy/index',
       name: 'Candidacy_index',
       component: CandidacyIndex
+    },
+    {
+      path: '/admin/advertisement',
+      name: 'Admin_advertisement',
+      component: AdminAdvertisement
+    },
+    {
+      path: '/admin/candidacy',
+      name: 'Admin_candidacy',
+      component: AdminCandidacy
+    },
+    {
+      path: '/admin/company',
+      name: 'Admin_company',
+      component: AdminCompany
+    },
+    {
+      path: '/admin/people',
+      name: 'Admin_people',
+      component: AdminPeople
     }
   ]
 })

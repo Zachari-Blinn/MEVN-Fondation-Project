@@ -1,18 +1,20 @@
 <template>
   <div>
+    <Navigation />
+
     <h1>Index</h1>
-    
+
     <ul id="example-1">
       <li v-for="candidacy in candidacies" :key="candidacy._id">
         {{ candidacy }}
       </li>
     </ul>
-
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Navigation from "../partials/Navigation";
 
 export default {
   data() {
@@ -26,6 +28,9 @@ export default {
     axios
       .get("http://localhost:8081/candidacy")
       .then((response) => (this.candidacies = response.data));
+  },
+  components: {
+    Navigation,
   },
 };
 </script>
