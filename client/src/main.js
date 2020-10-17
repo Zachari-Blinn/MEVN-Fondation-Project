@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import Axios from 'axios'
 
+import 'materialize-css'
+import 'materialize-css/dist/css/materialize.css'
+
 Vue.prototype.$http = Axios
 
 const token = localStorage.getItem('token')

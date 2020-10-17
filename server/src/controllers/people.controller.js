@@ -59,7 +59,8 @@ exports.people_get_people = async (req, res) => {
 // @desc remove specified people
 // @route REMOVE /people/:id
 exports.people_delete_people = async (req, res) => {
-    await People.deleteOne(req.params.id, function (err, result) {
+    console.log("test");
+    await People.deleteOne({ '_id': req.params.id}, function (err, result) {
         if (err) res.send(err);
 
         res.json(result);
@@ -73,7 +74,7 @@ exports.people_update_people = async (req, res) => {
         await People.findOneAndUpdate({
             _id: req.params.id
         }, req.body, {
-            new: true,
+            new: false,
             runValidators: true
         }, function (err, result) {
             if (err) res.send(err);
@@ -97,9 +98,9 @@ exports.people_login_people = async (req, res) => {
         try {
             if (await bcrypt.compare(req.body.password, people.password)) {
                 const token = jwt.sign({
-                    email: people.email,
-                    userId: people._id
-                },
+                        email: people.email,
+                        userId: people._id
+                    },
                     process.env.ACCESS_TOKEN_SECRET
                 );
 
@@ -129,4 +130,35 @@ exports.people_logout_people = async (req, res) => {
     refreshTokens = refreshTokens.filter(token => token !== req.body.token);
 
     res.status(204);
+}
+
+exports.people_search_people = async (req, res) => {
+    let queryCondition = {};
+
+    if (req.body.firstname) {
+        queryCondition.firstname = {
+            $regex: req.body.firstname,
+            $options: 'i'
+        };
+    }
+
+    if (req.body.lastname) {
+        queryCondition.lastname = {
+            $regex: req.body.lastname,
+            $options: 'i'
+        };
+    }
+
+    if (req.body.email) {
+        queryCondition.email = {
+            $regex: req.body.email,
+            $options: 'i'
+        };
+    }
+
+    await People
+        .find(queryCondition)
+        .then(response => {
+            res.status(200).json(response);
+        });
 }

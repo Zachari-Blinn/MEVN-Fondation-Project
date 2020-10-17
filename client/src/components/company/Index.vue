@@ -1,15 +1,26 @@
 <template>
   <div>
     <Navigation />
-
-    <h1>Index</h1>
-
-    <ul id="example-1">
-      <li v-for="company in companies" :key="company._id">
-        {{ company.name }} |
-        <a :href="company_url + company._id">Seen Company</a>
-      </li>
-    </ul>
+    <section>
+      <div class="container">
+        <div class="row">
+          <h1 class="">Companies</h1>
+          <div v-for="company in companies" :key="company._id">
+            <div class="col s6">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">{{ company.name }}</span>
+                  <!-- TODO DESCRIPTION WITH TRUNCATE -->
+                </div>
+                <div class="card-action center">
+                  <a :href="company_url + company._id">Seen Company</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 

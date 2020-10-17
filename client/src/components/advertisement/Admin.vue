@@ -1,13 +1,17 @@
 <template>
-    <div>
-      <h1>Admin advertisement</h1>
+  <div>
+    <Navigation />
   </div>
 </template>
 
 <script>
-export default {
+import Navigation from "../partials/Admin_Navigation";
 
-}
+export default {
+  components: {
+    Navigation,
+  },
+};
 </script>
 
 <style>

@@ -3,10 +3,10 @@
   <Navigation />
       <div class="container">
         <div class="row">
-          <div class="col s12 m12 l9 xl9">
+          <div class="col s12">
             <div class="card">
               <div class="card-content">
-                <h3 class="center">{{ title }}</h3>
+                <h3 class="center">Create Company</h3>
                 <div class="row">
                   <form class="col s12">
 
@@ -154,7 +154,8 @@
           </div>
         </div>
       </div>
-</div>
+      <br>
+  </div>
 </template>
 
 <script>
@@ -165,7 +166,6 @@ import Navigation from "../partials/Navigation";
 export default {
   data() {
     return {
-      title: "Company",
       current_step: 1,
       errors: [],
       step_1: {
