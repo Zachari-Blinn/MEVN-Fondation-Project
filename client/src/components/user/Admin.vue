@@ -1,5 +1,7 @@
 <template>
-  
+    <div>
+      <h1>Admin People</h1>
+  </div>
 </template>
 
 <script>

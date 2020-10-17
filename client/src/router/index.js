@@ -119,22 +119,34 @@ let router = new Router({
     {
       path: '/admin/advertisement',
       name: 'Admin_advertisement',
-      component: AdminAdvertisement
+      component: AdminAdvertisement,
+      meta: {
+        requiresAdmin: true
+      }
     },
     {
       path: '/admin/candidacy',
       name: 'Admin_candidacy',
-      component: AdminCandidacy
+      component: AdminCandidacy,
+      meta: {
+        requiresAdmin: true
+      }
     },
     {
       path: '/admin/company',
       name: 'Admin_company',
-      component: AdminCompany
+      component: AdminCompany,
+      meta: {
+        requiresAdmin: true
+      }
     },
     {
       path: '/admin/people',
       name: 'Admin_people',
-      component: AdminPeople
+      component: AdminPeople,
+      meta: {
+        requiresAdmin: true
+      }
     }
   ]
 })
@@ -142,6 +154,15 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login')
+  } else {
+    next()
+  }
+  if (to.matched.some(record => record.meta.requiresAdmin)) {
+    if(store.getters.isAdmin){
       next()
       return
     }

@@ -27,6 +27,8 @@ exports.people_create_people = async (req, res) => {
             if (!user) {
                 bcrypt.hash(req.body.password, 10).then(cryptedPassword => (
                     req.body.password = cryptedPassword,
+                    req.body.isAdmin = false,
+                    req.body.isActive = true,
 
                     People.create(req.body, function (err, result) {
                         if (err) res.send(err);

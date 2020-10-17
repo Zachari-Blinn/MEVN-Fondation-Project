@@ -3,11 +3,12 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex)
+
 export default new Vuex.Store({
   state: {
     status: '',
     token: localStorage.getItem('token') || '',
-    people: localStorage.getItem('people') || ''
+    people: JSON.parse(localStorage.getItem('people'))
   },
   mutations: {
     auth_request(state) {
@@ -25,10 +26,15 @@ export default new Vuex.Store({
       state.status = ''
       state.token = ''
     },
+    set_people(state, people) {
+      state.people = people;
+    }
   },
   getters: {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
+    people: state => state.people,
+    isAdmin: state => state.people.isAdmin
   },
   actions: {
     login({
@@ -43,12 +49,12 @@ export default new Vuex.Store({
         })
           .then(resp => {
             const token = resp.data.token
-            const people = JSON.stringify(resp.data.people)
+            const people = resp.data.people
 
             console.log(resp.data.people)
 
             localStorage.setItem('token', token)
-            localStorage.setItem('people', people)
+            localStorage.setItem('people', JSON.stringify(people))
 
             axios.defaults.headers.common['Authorization'] = token
 
@@ -93,6 +99,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         commit('logout')
         localStorage.removeItem('token')
+        localStorage.removeItem('people')
         delete axios.defaults.headers.common['Authorization']
         resolve()
       })
