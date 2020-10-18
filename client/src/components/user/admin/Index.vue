@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD:client/src/components/user/admin/Index.vue
   <div>
     <Navigation />
     <!-- Search -->
@@ -112,58 +113,25 @@
         </div>
       </div>
     </section>
+=======
+    <div>
+      <h1>Admin People</h1>
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc:client/src/components/user/Admin.vue
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD:client/src/components/user/admin/Index.vue
 import Navigation from "../../partials/Admin_Navigation";
 import axios from "axios";
 
+=======
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc:client/src/components/user/Admin.vue
 export default {
-  components: {
-    Navigation,
-  },
-  data() {
-    return {
-      show_people_url: "http://localhost:8080/admin/people/show/",
-      edit_people_url: "http://localhost:8080/admin/people/edit/",
-      delete_people_url: "http://localhost:8080/admin/people/delete/",
-      peoples: null,
-      firstname: null,
-      lastname: null,
-      email: null,
-    };
-  },
-  mounted() {
-    this.search();
-  },
-  methods: {
-    search: function () {
-      axios
-        .post("http://localhost:8081/people/search", {
-          firstname: this.firstname,
-          lastname: this.lastname,
-          email: this.email,
-        })
-        .then(
-          (response) => (
-            (this.peoples = response.data), console.log(response.data)
-          )
-        );
-    },
-    deleteThis: function (deleteId) {
-      console.log("test " + deleteId);
-      axios
-        .delete(`http://localhost:8081/people/${deleteId}`)
-        .then(
-          (response) => (
-            (this.peoples = response.data), this.search()
-          )
-        );
-    },
-  },
-};
+
+}
 </script>
 
 <style>
+
 </style>

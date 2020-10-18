@@ -106,5 +106,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.centrer {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 80%;
+}
+textarea{
+  width: 80%;
+  resize:none;
+}
 </style>

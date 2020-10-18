@@ -35,8 +35,15 @@ import Register from '@/components/user/Register'
 import PeopleShow from '@/components/user/Show'
 import PeopleDashboard from '@/components/user/Dashboard'
 // Admin routes imports
+<<<<<<< HEAD
 import AdminPeople from '@/components/user/admin/Index'
 import AdminPeopleEdit from '@/components/user/admin/Edit'
+=======
+import AdminAdvertisement from '@/components/advertisement/Admin'
+import AdminCandidacy from '@/components/candidacy/Admin'
+import AdminCompany from '@/components/company/Admin'
+import AdminPeople from '@/components/user/Admin'
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc
 
 Vue.use(Router)
 
@@ -156,6 +163,7 @@ let router = new Router({
       meta: {
         requiresAdmin: true
       }
+<<<<<<< HEAD
     },
     {
       path: '/admin/people/edit/:id',
@@ -201,6 +209,8 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
+=======
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc
     }
   ]
 })

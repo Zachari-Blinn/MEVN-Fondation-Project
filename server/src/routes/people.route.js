@@ -13,7 +13,10 @@ router.delete('/:id', PeopleController.people_delete_people);
 router.put('/:id', PeopleController.people_update_people);
 router.post('/login', validateLogin, PeopleController.people_login_people);
 router.delete('/logout', PeopleController.people_logout_people);
+<<<<<<< HEAD
 router.post('/search', PeopleController.people_search_people);
 router.get('/dashboard/:id', PeopleController.people_dashboard_people);
+=======
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc
 
 module.exports = router;

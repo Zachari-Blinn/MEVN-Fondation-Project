@@ -5,8 +5,14 @@ import App from './App'
 import router from './router'
 import Axios from 'axios'
 
-import 'materialize-css'
+
+
+/********************************************************* */
 import 'materialize-css/dist/css/materialize.css'
+import 'materialize-css/dist/js/materialize.js'
+import 'material-design-icons/iconfont/material-icons.css'
+/********************************************************* */
+
 
 Vue.prototype.$http = Axios
 
@@ -25,3 +31,26 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+
+////////////////////  Allow to cut the text if it's too longer  //////////////////////
+var filter = function(text, length, clamp){
+  clamp = clamp || '...';
+  var node = document.createElement('div');
+  node.innerHTML = text;
+  var content = node.textContent;
+  return content.length > length ? content.slice(0, length) + clamp : content;
+};
+
+Vue.filter('truncate', filter);
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+chainWebpack: config => {
+  config.module
+    .rule("pdf")
+    .test(/\.pdf$/)
+    .use("file-loader")
+    .loader("file-loader");
+}

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div>
     <Navigation />
     <div class="container">
@@ -95,6 +96,13 @@
                         </button>
                       </div>
                     </template>
+=======
+<div>
+  <Navigation />
+  <div class="container">
+    <div class="card" style="padding: 30px">
+    <h1>Register</h1>
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc
 
                     <!-- Step 3 -->
                     <template id="step_3" v-if="current_step == 3">
@@ -198,11 +206,64 @@
             </div>
           </div>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+      </template>
+
+      <!-- Step 4 -->
+      <template id="step_4" v-if="current_step == 4">
+        <div>
+          <label for="email">Email</label>
+          <input
+            name="email"
+            id="email"
+            type="text"
+            v-model="step_4.email"
+            required
+          />
+          <span v-if="msg.email">{{ msg.email }}</span>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input
+            name="password"
+            id="password"
+            type="password"
+            v-model="step_4.password"
+            required
+          />
+          <span v-if="msg.password">{{ msg.password }}</span>
+        </div>
+        <!-- Button -->
+        <div class="row">
+          <button
+            :disabled="
+              !!msg['email'] ||
+              !!msg['password'] ||
+              step_4.email == null ||
+              step_4.password == null
+            "
+            class="btn right"
+            type="button"
+            @click.prevent="confirmed()"
+          >
+            Confirm
+          </button>
+          <button class="btn left" type="button" @click.prevent="goToStep(3)">
+            Back
+          </button>
+        </div>
+      </template>
+    </form>
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc
     </div>
   </div>
+</div>
 </template>
 
+
+<!----------------------------------------- JS  ---------------------------------------->
 <script>
 import Navigation from "../partials/Navigation";
 const axios = require("axios");

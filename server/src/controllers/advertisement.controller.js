@@ -44,7 +44,7 @@ exports.advertisement_get_advertisement = async (req, res) => {
 // @desc remove specified advertisement
 // @route REMOVE /advertisement/:id
 exports.advertisement_delete_advertisement = async (req, res) => {
-    await Advertisement.deleteOne({ '_id': req.params.advertisementId}, function (err, result) {
+    await Advertisement.deleteOne(req.params.advertisementId, function (err, result) {
         if (err) res.send(err);
 
         res.json(result);

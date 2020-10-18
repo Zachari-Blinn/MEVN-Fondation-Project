@@ -59,7 +59,7 @@ exports.people_get_people = async (req, res) => {
 // @desc remove specified people
 // @route REMOVE /people/:id
 exports.people_delete_people = async (req, res) => {
-    await People.deleteOne({ '_id': req.params.id}, function (err, result) {
+    await People.deleteOne(req.params.id, function (err, result) {
         if (err) res.send(err);
 
         res.json(result);
@@ -73,7 +73,7 @@ exports.people_update_people = async (req, res) => {
         await People.findOneAndUpdate({
             _id: req.params.id
         }, req.body, {
-            new: false,
+            new: true,
             runValidators: true
         }, function (err, result) {
             if (err) res.send(err);
@@ -97,9 +97,9 @@ exports.people_login_people = async (req, res) => {
         try {
             if (await bcrypt.compare(req.body.password, people.password)) {
                 const token = jwt.sign({
-                        email: people.email,
-                        userId: people._id
-                    },
+                    email: people.email,
+                    userId: people._id
+                },
                     process.env.ACCESS_TOKEN_SECRET
                 );
 
@@ -129,6 +129,7 @@ exports.people_logout_people = async (req, res) => {
     refreshTokens = refreshTokens.filter(token => token !== req.body.token);
 
     res.status(204);
+<<<<<<< HEAD
 }
 
 exports.people_dashboard_people = (req, res) => {
@@ -168,4 +169,6 @@ exports.people_search_people = async (req, res) => {
         .then(response => {
             res.status(200).json(response);
         });
+=======
+>>>>>>> a7a9a89971a3b90153883ecc5d45cfd8f61cd8fc
 }

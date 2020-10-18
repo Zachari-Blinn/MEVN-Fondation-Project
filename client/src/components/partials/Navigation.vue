@@ -1,11 +1,11 @@
 <template>
   <div>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Logo</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
+    <nav class="nav-wrapper couleur">
+      <div>
+        <a href="/" class="brand-logo" style="margin-left: 15px">Job Elite</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
         <ul class="right hide-on-med-and-down">
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/company/index">Companies</router-link></li>
@@ -85,6 +85,16 @@
 <script>
 import store from "../../store";
 
+/********************************************** */
+import JQuery from 'jquery'
+let $ = JQuery
+
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+})
+
+/********************************************* */
+
 export default {
   store,
   data() {
@@ -115,7 +125,18 @@ export default {
 };
 </script>
 
-<style>
+
+<!------------------------------  CSS -------------------------------->
+<style scoped>
+
+#nav-mobile{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.couleur{
+	background-color: #004e66;
+}
 nav {
   margin-bottom: 75px;
 }
