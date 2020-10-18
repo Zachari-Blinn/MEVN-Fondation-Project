@@ -72,13 +72,6 @@
                 <!-- Button -->
                 <td>
                   <span>
-                    <a
-                      :href="edit_candidacy_url + candidacy._id"
-                      class="btn-floating amber accent-4"
-                      ><i class="material-icons">build</i></a
-                    >
-                  </span>
-                  <span>
                     <button
                       class="btn-floating red darken-1"
                       @click.prevent="deleteThis(candidacy._id)"

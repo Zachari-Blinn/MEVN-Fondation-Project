@@ -25,7 +25,9 @@
                   </div>
                 </div>
                 <div>
-                  <router-link class="btn" to="/company/create">Add Company</router-link>
+                  <router-link class="btn" to="/company/create"
+                    >Add Company</router-link
+                  >
                 </div>
               </div>
             </div>
@@ -55,27 +57,29 @@
                         >
                           <div class="row">
                             <div class="col s12">
-                              {{ candidacy.people.firstname }}
-                              {{ candidacy.people.lastname }} just applied !
-                              <a
-                                class="btn dropdown-trigger"
-                                href="#!"
-                                data-target="dropdown1"
-                                >Manage<i class="material-icons right"
-                                  >arrow_drop_down</i
-                                ></a
-                              >
-                              
+                              <h6>Candidacies:</h6>
+                              <table class="center">
+                                <tbody>
+                                  <tr>
+                                    <td>{{ candidacy.people.firstname }}</td>
+                                    <td>{{ candidacy.people.lastname }}</td>
+                                    <td>{{ candidacy.description }}</td>
+                                    <td>
+                                      <a
+                                        class="btn"
+                                        v-on:click="download(candidacy._id)"
+                                        >Download</a
+                                      >
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
                             </div>
                           </div>
                         </li>
                       </ul>
                     </div>
-                    
                   </div>
-                  
-
-
                 </div>
                 <div class="card-action">
                   <a :href="url + company._id">Add Advertisement</a>
@@ -111,14 +115,32 @@ export default {
       url: `http://localhost:8081/company/dashboard/${this.id}`,
       method: "get",
     })
-      .then(
-        (response) => (
-          (this.companies = response.data)
-        )
-      )
+      .then((response) => (this.companies = response.data))
       .catch(function (error) {
         console.log(error);
       });
+  },
+  methods: {
+    download(id) {
+      axios({
+        url: `http://localhost:8081/candidacy/download/${id}`,
+        method: "get",
+        responseType: "blob",
+      })
+        .then((response) => {
+          let fileUrl = window.URL.createObjectURL(new Blob([response.data]));
+          let fileLink = document.createElement("a");
+
+          fileLink.href = fileUrl;
+          fileLink.setAttribute("download", "file.pdf");
+          document.body.appendChild(fileLink);
+
+          fileLink.click();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
