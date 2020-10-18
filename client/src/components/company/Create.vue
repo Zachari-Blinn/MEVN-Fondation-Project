@@ -1,12 +1,10 @@
 <template>
 <div>
   <Navigation />
-      <div class="container">
-        <div class="row">
-          <div class="col s12">
-            <div class="card">
-              <div class="card-content">
-                <h3 class="center">Create Company</h3>
+      	<div class="container">
+                  <div class="card">
+          	<div class="col s12 m12 l9 xl9">
+                <h3 class="center">{{ title }}</h3>
                 <div class="row">
                   <form class="col s12">
 
@@ -63,7 +61,7 @@
 
                       <!-- Button -->
                       <div class="row">
-                        <button v-if='!isComplete' :disabled='!!errors.length' class="btn right" type="button"
+                        <button v-if='!isComplete' :disabled='!!errors.length' class="btn right buttond" type="button"
                           @click.prevent="goToStep(2)">Next</button>
                       </div>
 
@@ -96,9 +94,9 @@
                       </div>
                       <!-- Button -->
                       <div class="row">
-                        <button class="btn right" type="button" @click.prevent="goToStep(3)">Next</button>
+                        <button class="btn right buttond" type="button" @click.prevent="goToStep(3)">Next</button>
 
-                        <button class="btn left" type="button" @click.prevent="goToStep(1)">Back</button>
+                        <button class="btn left buttong" type="button" @click.prevent="goToStep(1)">Back</button>
                       </div>
                     </template>
 
@@ -108,7 +106,7 @@
                         <!-- Logo -->
                         <div class="row">
                           <div class="file-field input-field">
-                            <div class="btn">
+                            <div class="btn buttong">
                               <span>File</span>
                               <input type="file">
                             </div>
@@ -121,9 +119,9 @@
 
                       <!-- Button -->
                       <div class="row">
-                        <button class="btn right" type="button" @click.prevent="goToStep(4)">Next</button>
+                        <button class="btn right buttond" type="button" @click.prevent="goToStep(4)">Next</button>
 
-                        <button class="btn left" type="button" @click.prevent="goToStep(2)">Back</button>
+                        <button class="btn left buttong" type="button" @click.prevent="goToStep(2)">Back</button>
                       </div>
                     </template>
 
@@ -142,20 +140,17 @@
                         </ul>
                       </div>
                       <div>
-                        <button class="btn right" type="button" @click.prevent="confirmed()">Confirm</button>
+                        <button class="btn right buttond" type="button" @click.prevent="confirmed()">Confirm</button>
 
-                        <button class="btn left" type="button" @click.prevent="goToStep(3)">Back</button>
+                        <button class="btn left buttong" type="button" @click.prevent="goToStep(3)">Back</button>
                       </div>
                     </template>
                   </form>
                 </div>
-              </div>
-            </div>
+          	</div>
           </div>
-        </div>
-      </div>
-      <br>
-  </div>
+      	</div>
+</div>
 </template>
 
 <script>
@@ -166,6 +161,7 @@ import Navigation from "../partials/Navigation";
 export default {
   data() {
     return {
+      title: "Company",
       current_step: 1,
       errors: [],
       step_1: {
@@ -249,3 +245,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.centrer {
+  display: flex;
+  justify-content: center !important;
+}
+.card {
+  width: 100%;
+}
+
+.buttond{
+  margin-right: 50px;
+}
+.buttong{
+  margin-left: 50px;
+}
+
+</style>

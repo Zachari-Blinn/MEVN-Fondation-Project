@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <Navigation />
-
+<div>
+  <Navigation />
+  <div class="container">
+    <div class="card" style="padding: 30px">
     <h1>Register</h1>
 
     <form action="" method="post">
@@ -158,9 +159,13 @@
         </div>
       </template>
     </form>
+    </div>
   </div>
+</div>
 </template>
 
+
+<!----------------------------------------- JS  ---------------------------------------->
 <script>
 const axios = require("axios");
 const API_URL = "http://localhost:8081/people";

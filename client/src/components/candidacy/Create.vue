@@ -2,33 +2,64 @@
   <div>
     <Navigation />
 
-    <h1>Candidacy</h1>
-    <form action="">
-      <div>
-        <label for="description">Cover letter</label>
-        <textarea
-          name="description"
-          id="description"
-          v-model="description"
-        ></textarea>
+    <div>
+        <div class="container">
+          <div class="col s12 m12 l9 xl9 centrer">
+            <div class="card">
+              <div class="card-content">
+                <h3 class="center">Candidacy create</h3>
+                <div class="row">
+                  <form class="col s12">
+                      <div>
+                        <!-- Description -->
+                        <div class="row center">
+                          <div class="input-field col s12">
+                            <label for="description">Cover letter</label>
+                            <textarea
+                              class="materialize-textarea"
+                              maxlength="2370" minlength="50"
+                              name="description"
+                              id="description"
+                              v-model="description"
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <!-- CV file -->
+                        <div class="row">
+                          <div class="file-field input-field col s12">
+                            <div class="btn">
+                              <p for="cv_filename">Currucilum Vitae</p>
+                              <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                              <input
+                              class="file-field"
+                              type="file"
+                              name="cv_filename"
+                              id="cv_filename"
+                              ref="cv_filename"
+                              v-on:change="onChangeFileUpload()"
+                              />
+                            </div>                        
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <!-- Button -->
+                      <div>
+                        <button class="btn" type="submit" @click.prevent="complete()"> Send </button>
+                      </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <label for="cv_filename">CV</label>
-        <input
-          type="file"
-          name="cv_filename"
-          id="cv_filename"
-          ref="cv_filename"
-          v-on:change="onChangeFileUpload()"
-        />
-      </div>
-      <div>
-        <button class="btn" type="submit" @click.prevent="complete()">
-          Send
-        </button>
-      </div>
-    </form>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -80,5 +111,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.centrer {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 80%;
+}
+textarea{
+  width: 80%;
+  resize:none;
+}
 </style>

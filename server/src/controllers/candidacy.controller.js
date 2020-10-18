@@ -48,7 +48,7 @@ exports.candidacy_get_candidacy = async (req, res) => {
 // @desc remove specified candidacy
 // @route REMOVE /candidacy/:id
 exports.candidacy_delete_candidacy = async (req, res) => {
-    await Candidacy.deleteOne({ '_id': req.params.candidacyId}, function (err, result) {
+    await Candidacy.deleteOne(req.params.candidacyId, function (err, result) {
         if (err) res.send(err);
 
         res.json(result);

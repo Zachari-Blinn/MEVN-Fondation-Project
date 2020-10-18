@@ -31,7 +31,6 @@ import AdminAdvertisement from '@/components/advertisement/Admin'
 import AdminCandidacy from '@/components/candidacy/Admin'
 import AdminCompany from '@/components/company/Admin'
 import AdminPeople from '@/components/user/Admin'
-import AdminPeopleEdit from '@/components/user/Admin_Edit'
 
 Vue.use(Router)
 
@@ -145,15 +144,6 @@ let router = new Router({
       path: '/admin/people',
       name: 'Admin_people',
       component: AdminPeople,
-      meta: {
-        requiresAdmin: true
-      }
-    },
-    {
-      path: '/admin/people/edit/:id',
-      name: 'Admin_People_Edit',
-      component: AdminPeopleEdit,
-      props: true,
       meta: {
         requiresAdmin: true
       }
