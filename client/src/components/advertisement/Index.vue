@@ -8,6 +8,10 @@
           <div class="card">
             <div class="card-content">
               <h1 class="center">Advertisement</h1>
+                <ul class="collapsible">
+                  <li>
+                    <div class="collapsible-header"><i class="material-icons">search</i>Filter</div>
+              <div class="collapsible-body">
               <section>
                 <form action="" method="post">
                   <div>
@@ -80,6 +84,9 @@
                   </div>
                 </form>
               </section>
+              </div>
+                  </li>
+                </ul>
             </div>
           </div>
         </div>
@@ -108,8 +115,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Navigation from "../partials/Navigation";
+import axios from "axios";
 
 export default {
   data() {

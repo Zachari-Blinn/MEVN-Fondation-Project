@@ -40,10 +40,8 @@ export default {
   components: {
     Navigation,
   },
-  mounted: {
-    function() {
+  mounted () {
       M.AutoInit();
-    },
   },
 };
 </script>

@@ -24,8 +24,6 @@ exports.advertisement_create_advertisement = async (req, res) => {
                 $push: {
                     advertisements: advertisement._id
                 }
-            }).then(response => {
-                res.status(200).json(response);
             })
         ));
     } catch (error) {

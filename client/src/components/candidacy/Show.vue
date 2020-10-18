@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Navigation from "../partials/Navigation";
+import axios from "axios";
 
 export default {
   props: ["id"],

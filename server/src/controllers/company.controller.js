@@ -1,3 +1,4 @@
+const { response } = require('express');
 const Company = require('../models/company.model');
 const People = require('../models/people.model');
 
@@ -16,6 +17,8 @@ exports.company_get_all = async (req, res) => {
 exports.company_create_company = async (req, res) => {
     try {
         // Get current user and set for company
+        req.body.employee = req.userData.userId;
+
         await Company.create(req.body).then(company => (
             People.findByIdAndUpdate(req.userData.userId, {
                 $push: {
@@ -68,4 +71,36 @@ exports.company_update_company = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+exports.company_dashboard_company = (req, res) => {
+    console.log("test");
+    Company.find({employee: req.params.id}).populate({
+        path:'advertisements',
+        populate: {
+            path: 'candidacies',
+            populate: {
+                path: 'people'
+            }
+        }
+    }).then(response => {
+        res.status(200).json(response);
+    });
+}
+
+exports.company_search_company = async (req, res) => {
+    let queryCondition = {};
+
+    if (req.body.name) {
+        queryCondition.name = {
+            $regex: req.body.name,
+            $options: 'i'
+        };
+    }0
+
+    await Company
+        .find(queryCondition)
+        .then(response => {
+            res.status(200).json(response);
+        });
 }

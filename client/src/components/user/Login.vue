@@ -62,7 +62,7 @@ export default {
         .dispatch("login", { email, password })
         .then(
           (response) => (
-            this.$router.push({ name: "Home" }), console.log(response)
+            this.$router.push({ name: "Home" })
           )
         )
         .catch((err) => console.log(err));

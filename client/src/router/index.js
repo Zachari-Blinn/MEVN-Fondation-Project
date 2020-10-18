@@ -9,29 +9,34 @@ import Home from '@/components/Home'
 import AdvertisementCreate from '@/components/advertisement/Create'
 import AdvertisementIndex from '@/components/advertisement/Index'
 import AdvertisementShow from '@/components/advertisement/Show'
+// Admin routes imports
+import AdminAdvertisement from '@/components/advertisement/admin/Index'
+import AdminAdvertisementEdit from '@/components/advertisement/admin/Edit'
 
 // Candidacy routes imports
 import CandidacyCreate from '@/components/candidacy/Create'
 import CandidacyIndex from '@/components/candidacy/Index'
 import CandidacyShow from '@/components/candidacy/Show'
+// Admin routes imports
+import AdminCandidacy from '@/components/candidacy/admin/Index'
 
 // Company routes imports 
 import CompanyCreate from '@/components/company/Create'
 import CompanyIndex from '@/components/company/Index'
 import CompanyShow from '@/components/company/Show'
+import CompanyDashboard from '@/components/company/Dashboard'
+// Admin routes imports
+import AdminCompany from '@/components/company/admin/Index'
+import AdminCompanyEdit from '@/components/company/admin/Edit'
 
 // People routes imports
 import Login from '@/components/user/Login'
 import Register from '@/components/user/Register'
 import PeopleShow from '@/components/user/Show'
-//import Dashboard from '@/components/user/Dashboard'
-
+import PeopleDashboard from '@/components/user/Dashboard'
 // Admin routes imports
-import AdminAdvertisement from '@/components/advertisement/Admin'
-import AdminCandidacy from '@/components/candidacy/Admin'
-import AdminCompany from '@/components/company/Admin'
-import AdminPeople from '@/components/user/Admin'
-import AdminPeopleEdit from '@/components/user/Admin_Edit'
+import AdminPeople from '@/components/user/admin/Index'
+import AdminPeopleEdit from '@/components/user/admin/Edit'
 
 Vue.use(Router)
 
@@ -98,7 +103,10 @@ let router = new Router({
       path: '/candidacy/show/:id',
       name: 'Candidacy_show',
       component: CandidacyShow,
-      props: true
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/company/show/:id',
@@ -156,6 +164,42 @@ let router = new Router({
       props: true,
       meta: {
         requiresAdmin: true
+      }
+    },
+    {
+      path: '/admin/company/edit/:id',
+      name: 'Admin_Company_Edit',
+      component: AdminCompanyEdit,
+      props: true,
+      meta: {
+        requiresAdmin: true
+      }
+    },
+    {
+      path: '/admin/advertisement/edit/:id',
+      name: 'Admin_Advertisement_Edit',
+      component: AdminAdvertisementEdit,
+      props: true,
+      meta: {
+        requiresAdmin: true
+      }
+    },
+    {
+      path: '/company/dashboard/:id',
+      name: 'Company_dashboard',
+      component: CompanyDashboard,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/user/dashboard/:id',
+      name: 'People_dashboard',
+      component: PeopleDashboard,
+      props: true,
+      meta: {
+        requiresAuth: true
       }
     }
   ]

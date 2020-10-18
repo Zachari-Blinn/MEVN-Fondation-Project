@@ -9,7 +9,6 @@
   </div>
 </template>
 
-
 <script>
 //import Navigation from "./components/partials/Navigation"
 //import Footer from "./components/partials/Footer"
@@ -20,14 +19,8 @@ import M from 'materialize-css'
 export default {
   name: "App",
   store,
-  components: {
-    //Navigation,
-    //Footer
-  },
-  mounted: {
-    function () {
-      M.AutoInit()
-    }
+  mounted () {
+    M.AutoInit()
   }
 };
 

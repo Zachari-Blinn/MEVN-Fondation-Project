@@ -19,7 +19,7 @@
     <section>
       <div class="container">
         <div class="row">
-          <h3>{{company.name}} Advertisement:</h3>
+          <h3>{{ company.name }} Advertisement:</h3>
           <div v-for="advertisement in advertisements" :key="advertisement._id">
             <div class="col s6">
               <div class="card">
@@ -29,7 +29,9 @@
                 </div>
                 <div class="card-action center">
                   <div v-if="isLoggedIn">
-                    <a :href="candidacy_url_create + advertisement._id">Apply</a>
+                    <a :href="candidacy_url_create + advertisement._id"
+                      >Apply</a
+                    >
                   </div>
                 </div>
               </div>
@@ -42,13 +44,16 @@
 </template>
 
 <script>
-import axios from "axios";
 import Navigation from "../partials/Navigation";
-import store from '../../store';
+import axios from "axios";
+import store from "../../store";
 
 export default {
   props: ["id"],
   store,
+  components: {
+    Navigation,
+  },
   data() {
     return {
       company: null,
@@ -72,9 +77,6 @@ export default {
       url: `http://localhost:8081/advertisement/company/${this.id}`,
       method: "get",
     }).then((response) => (this.advertisements = response.data));
-  },
-  components: {
-    Navigation,
   },
 };
 </script>

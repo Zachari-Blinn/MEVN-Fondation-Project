@@ -89,13 +89,6 @@
                 <td>
                   <span>
                     <a
-                      :href="show_people_url + people._id"
-                      class="btn-floating light-blue darken-3"
-                      ><i class="material-icons">remove_red_eye</i></a
-                    >
-                  </span>
-                  <span>
-                    <a
                       :href="edit_people_url + people._id"
                       class="btn-floating amber accent-4"
                       ><i class="material-icons">build</i></a
@@ -123,7 +116,7 @@
 </template>
 
 <script>
-import Navigation from "../partials/Admin_Navigation";
+import Navigation from "../../partials/Admin_Navigation";
 import axios from "axios";
 
 export default {

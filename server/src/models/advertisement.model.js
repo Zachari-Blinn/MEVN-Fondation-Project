@@ -48,11 +48,11 @@ const AdvertisementSchema = new mongoose.Schema({
     },
     candidacies: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "candidacy"
+        ref: "Candidacy"
     }],
     company: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "company"
+        ref: "Company"
     }
 }, {
     timestamps: true

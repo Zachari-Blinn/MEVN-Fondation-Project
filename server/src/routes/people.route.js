@@ -14,5 +14,6 @@ router.put('/:id', PeopleController.people_update_people);
 router.post('/login', validateLogin, PeopleController.people_login_people);
 router.delete('/logout', PeopleController.people_logout_people);
 router.post('/search', PeopleController.people_search_people);
+router.get('/dashboard/:id', PeopleController.people_dashboard_people);
 
 module.exports = router;

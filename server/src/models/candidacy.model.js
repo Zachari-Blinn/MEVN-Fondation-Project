@@ -19,11 +19,11 @@ const CandidacySchema = new mongoose.Schema({
     },
     advertisement: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "advertisement"
+        ref: "Advertisement"
     },
     people: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "people"
+        ref: "People"
     }
 }, {
     timestamps: true

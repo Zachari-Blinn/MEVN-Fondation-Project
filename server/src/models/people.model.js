@@ -53,7 +53,7 @@ const PeopleSchema = new mongoose.Schema({
     },
     candidacies: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "candidacy"
+        ref: "Candidacy"
     }],
     companies: [{
         type: mongoose.Schema.Types.ObjectId,

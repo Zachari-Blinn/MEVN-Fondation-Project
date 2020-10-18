@@ -131,6 +131,14 @@ exports.people_logout_people = async (req, res) => {
     res.status(204);
 }
 
+exports.people_dashboard_people = (req, res) => {
+    People.findById(req.params.id).populate({
+        path:'candidacies'
+    }).then(response => {
+        res.status(200).json(response);
+    });
+}
+
 exports.people_search_people = async (req, res) => {
     let queryCondition = {};
 

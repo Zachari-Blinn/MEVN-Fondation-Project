@@ -38,7 +38,7 @@ const CompanySchema = new mongoose.Schema({
     },
     advertisements: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "advertisement"
+        ref: "Advertisement"
     }],
     employee: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -159,9 +159,9 @@
 </template>
 
 <script>
+import Navigation from "../partials/Navigation";
 const axios = require("axios");
 const API_URL = "http://localhost:8081/company";
-import Navigation from "../partials/Navigation";
 
 export default {
   data() {

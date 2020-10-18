@@ -88,13 +88,7 @@
                   />
                 </div>
                 <div>
-                  <button
-                    class="btn right"
-                    type="button"
-                    @click.prevent="confirmed()"
-                  >
-                    Confirm
-                  </button>
+              <button class="btn" type="button" @click.prevent="confirmed()">Confirm</button>
                 </div>
               </div>
             </form>
@@ -106,7 +100,7 @@
 </template>
 
 <script>
-import Navigation from "../partials/Admin_Navigation";
+import Navigation from "../../partials/Admin_Navigation";
 import axios from "axios";
 
 export default {

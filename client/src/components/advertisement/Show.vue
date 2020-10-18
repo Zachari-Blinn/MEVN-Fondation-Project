@@ -22,9 +22,9 @@
 </template>
 
 <script>
+import Navigation from "../partials/Navigation";
 import axios from "axios";
 import store from "../../store";
-import Navigation from "../partials/Navigation";
 
 export default {
   props: ["id"],
